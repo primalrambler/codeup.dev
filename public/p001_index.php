@@ -128,7 +128,9 @@
                 <div class="col-lg-5 col-lg-offset-1 col-sm-push-6  col-sm-6">
                     <hr class="section-heading-spacer">
                     <div class="clearfix"></div>
-                    <h2 class="section-heading">Design, Engineering<br>and Project Management</h2>
+                    <a href="/p001_resume.php">
+                        <h2 class="section-heading">Design, Engineering<br>and Project Management</h2>
+                    </a>
                     <p class="lead">Designs and projects across Texas for roundabouts, city streets, county roads, 5 level highway interchanges, and elevated toll roads, were all part of a 15 year civil engineering career for Dan Carroll, P.E., Texas A&M Class of '00.</p>
                 </div>
                 <div class="col-lg-5 col-sm-pull-6  col-sm-6">
