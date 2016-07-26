@@ -1,0 +1,78 @@
+h1 {
+	color: darkgreen;
+	text-decoration: overline;
+}
+h2 {
+	color: green;
+	text-indent: 20px;
+}
+
+.wrapper {
+	background-color: floralwhite;
+	background-image: url(/img/fabric_plaid.png);
+	font-family: Arial, Helvetica, sans-serif;
+}
+ul {
+	list-style-type: square;
+}
+
+tr:nth-child(even) {
+	background-color: cadetblue
+}
+
+th {
+	height: 2.5em;
+	vertical-align: center;
+	text-align: center;
+	font-size: 1.75em;
+}
+tr {
+	height:1.5em;
+	vertical-align: center;
+	font-size: 1.1em;
+	text-align: center;
+	padding: 50px;
+
+}
+
+a:link {
+	color: maroon;
+	}
+
+a:visited {
+	color: grey;
+	}
+a:hover {
+	color: olive;
+	background-color: Gainsboro;
+}
+a:active {
+	color: orange;
+	background-color: white;
+}
+
+blockquote {
+	background-color: Gainsboro;
+	border-left: 5px solid black;
+	padding: 10px;
+	
+}
+
+.link-pic img{
+	margin: auto;
+	display: block;
+	width: 50%;
+	border-radius: 50px;
+}
+
+.gmc-pic {
+	margin: auto;
+	display: block;
+	width: 50%;
+	height: 50%;
+	border-radius: 10px;
+}
+
+
+
+
