@@ -1,0 +1,62 @@
+.box {
+	width: 50px;
+	height: 50px;
+	padding: 10px;
+	border: solid 1px black;
+	margin-bottom: 50px;
+	margin-top: 50px;
+	margin-right: 50px;
+	font-weight: bold;
+	font-size: 0.9em;
+	color: white;
+	float: left;
+	position: relative;
+}
+
+
+/*}
+.box:nth-child(4) {
+	clear:left;
+}*/
+
+.box:nth-of-type(2n+1) {
+	clear:left;
+}
+
+.red {
+	background-color: red;
+}
+
+.orange {
+	background-color: #ff9900;
+}
+.yellow {
+	background-color: #fff000;
+	}
+
+.green {
+	background-color: green;
+	}
+
+.blue {
+	background-color: blue;
+	
+}
+.violet {
+	background-color: violet;
+}
+
+a {
+	font-size: 2em;
+	font-weight: bold;
+}
+.box>img {
+	position:absolute;
+	top: -40px;
+	right: -40px;
+}
+.ribbon {
+	position: fixed;
+	top:0;
+	right:0;
+}
