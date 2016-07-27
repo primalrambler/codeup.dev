@@ -7,19 +7,19 @@ her grades is greater than 80, otherwise the message should be "You need to prac
 var testGrade1 = 70;
 var testGrade2 = 80;
 var testGrade3 = 95;
-
-var average;
-
-average = (testGrade1 + testGrade2 + testGrade3)/3
+var average = (testGrade1 + testGrade2 + testGrade3)/3
+//var message;
 
 console.log (average.toFixed(2))
 
 if (average > 80) {
 	console.log("You're awesome")
+	//could assign message = "You're awesome"
 } else {
 	console.log("You need to practice more")
+	//could assign message = "You need...."
 }
-
+	//and then console.log(message)
 
 /* HEB has an offer for the clients that buy products amounting more than $200. 
 The discount is 35% off the purchase. Write a JS program, using conditionals, 
@@ -43,6 +43,7 @@ if (cameronBought > breakPoint) {
 	finalPayment = cameronBought * (1-discount);
 	console.log("Cameron bought $" + cameronBought.toFixed(2) + ", discount was applied. Final payment: $" + finalPayment.toFixed(2));
 } else {
+	//could set finalPayment = cameronBought and replace it at the end of this console log
 	console.log("Cameron bought $" + cameronBought.toFixed(2) + ", no discount was applied. Final payment: $" + cameronBought.toFixed(2));
 
 }
