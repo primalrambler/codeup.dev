@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<title>Break Continue</title>
+	<style>
+		h1 {
+			text-align: center;
+			font-family: Helvetica;
+		}
+	</style>
+</head>
+<body>
+	<h1>CHECK THE JS CONSOLE</h1>
+<!-- 
+	Use Math.floor((Math.random()*50)+1) to generate a random number between 1 and 50. 
+	If the number is not odd, keep getting a new random number till it is odd.
+	Use console.log to log all the odd numbers from 1 to 50, except the random odd number
+	you generated, by using break and continue. Try to match the output shown below (your random number will be different).
+	Finally, save your work, commit the changes to your git repository, and push to GitHub.
+	Your output should look like this:
+
+	Random odd number to skip is: 27
+	Here is an odd number: 1
+	Here is an odd number: 3
+	Here is an odd number: 5 -->
+
+
+	<script>
+		var skipThis;
+
+		do  {
+			skipThis = Math.floor((Math.random()*50)+1);
+			} while (skipThis % 2 == 0);
+		
+		console.log("Random odd number to skip is " + skipThis);
+		
+		for (i = 1; i < 100; i += 2) {
+
+			if (i >= 50){
+				break;
+			}
+
+			if (i == skipThis) {
+				console.log("Yikes! Skipping number: " + i);
+				continue;
+			}
+
+			console.log("Here is an odd number: " + i)
+	}
+	</script>
+
+
