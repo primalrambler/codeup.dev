@@ -31,16 +31,16 @@
 
 	var tempString = "";
 
-	for (i = 1; i <=10; i +=1) {
+	for (i = 1; i <= 10; i += 1) {
 
 		tempString = i.toString();
 		if (i < 10){
-			for (j = 1; j < i; j +=1) {
+			for (j = 1; j < i; j += 1) {
 				tempString = tempString + i;
 			}	
 		} else {
 			tempString = "0";
-			for (j = 1; j < i; j +=1) {
+			for (j = 1; j < i; j += 1) {
 				tempString = tempString + "0";
 			}	
 		}
@@ -55,7 +55,7 @@
 	var tempString;
 	var tempChar;
 
-	for (i = 1; i <=10; i +=1) {
+	for (i = 1; i <= 10; i += 1) {
 		tempChar = (i % 10).toString();
 		tempString = tempChar;
 			for (j = 1; j < i; j +=1) {
@@ -69,7 +69,7 @@
 	console.log("---------- REFACTOR 1.1 FIRST PROBLEM ---------------");
 
 	var tempString;
-	for (i = 1; i <=10; i +=1) {
+	for (i = 1; i <= 10; i += 1) {
 		tempString = (i % 10).toString();  //eliminate need for tempChar by + to a string
 			for (j = 1; j < i; j +=1) {
 				tempString = tempString + (i % 10).toString();
@@ -83,7 +83,7 @@
 	console.log("---------- REFACTOR 1.2 FIRST PROBLEM ---------------");
 
 	var tempString;
-	for (i = 1; i <=10; i +=1) {
+	for (i = 1; i <= 10; i += 1) {
 		tempString = (i % 10).toString();
 			for (j = 1; j < i; j +=1) {
 				tempString = tempString + (i % 10);  //once we're concatenating,
@@ -99,9 +99,9 @@
 
 	var tempString;
 
-	for (i = 1; i <=10; i +=1) {
+	for (i = 1; i <= 10; i += 1) {
 		tempString = "" + (i % 10);  //no need for conversion to a string
-			for (j = 1; j < i; j +=1) {
+			for (j = 1; j < i; j += 1) {
 				tempString = tempString + (i % 10);  
 			}
 		console.log(tempString);	
@@ -114,7 +114,7 @@
 
 	var tempString;
 
-	for (i = 1; i <=10; i +=1) {
+	for (i = 1; i <= 10; i += 1) {
 		tempString = "" + (i % 10);
 		console.log(tempString.repeat(i));	
 		}
@@ -125,9 +125,8 @@
 
 	console.log("---------- REFACTOR 2.1 FIRST PROBLEM ---------------");
 
-
-	for (i = 1; i <=20; i +=1) {
-		console.log(("" + (i % 10)).repeat(i));	
+	for (i = 1; i <= 10; i += 1) {
+		console.log(("" + (i % 10)).repeat(i));	//(i % 10).toString().reapeat(i)
 		}
 	</script>
 
@@ -143,11 +142,11 @@
 	<script>
 	console.log("---------- NEXT PROBLEM ---------------");
 
-	var multiNum = Math.floor(Math.random() * 10) + 1;
+	var randoNum = Math.floor(Math.random() * 10) + 1;
 	maxNum = 10;
 
-	for (i = 1; i <= maxNum; i +=1) {
-		console.log(multiNum + "x" + i + "=" + (i * multiNum));
+	for (i = 1; i <= maxNum; i += 1) {
+		console.log(randoNum + "x" + i + "=" + (i * randoNum));
 	}
 	</script>
 
@@ -159,12 +158,13 @@
 	80 is even
 	24 is even
 	199 is odd -->
+
 	<script>
 	console.log("---------- NEXT PROBLEM ---------------");
 
 	var whatIsIt;
 
-	for (i = 1; i <=10; i +=1) {
+	for (i = 1; i <= 10; i += 1) {
 		whatIsIt = Math.floor(Math.random() * 200) + 20;
 		if (whatIsIt % 2 > 0) {
 			console.log(whatIsIt + " is odd");
@@ -186,7 +186,7 @@
 	<script>
 	console.log("---------- NEXT PROBLEM ---------------");
 
-	for (i = 100; i > 0; i -=5) {
+	for (i = 100; i > 0; i -= 5) {
 		console.log(i);
 	}
 	</script>
