@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Math Functions</title>
+	<style>
+		h1 {
+			text-align: center;
+			font-family: fantasy;
+		}
+	</style>
+	<meta charset="utf-8">
+</head>
+
+<body>
+	<h1>RESULTS ARE IN THE CONSOLE</h1>
+	<script type="text/javascript">
+
+	function sumTwoNumbers(x,y) {
+		return (isNumeric(x) && isNumeric(y))? x + y : "inputs must be numeric"; 
+	}
+
+	function subtractTwoNumbers(x,y) {
+		return (isNumeric(x) && isNumeric(y))? x - y : "inputs must be numeric";
+	}
+
+	function multiplyTwoNumbers(x,y) {
+		return (isNumeric(x) && isNumeric(y))? x * y : "inputs must be numeric";
+	}
+
+	function divideTwoNumbers(x,y){
+		return (y == 0) ? "you are dividing by zero" : x / y;
+	}
+
+	function squareANumber(x) {
+		return (isNumeric(x))? multiplyTwoNumbers(x,x) : "inputs must be numeric";
+	}
+
+	function sumTwoSquares(x,y) {
+		return (isNumeric(x) && isNumeric(y))? sumTwoNumbers(squareANumber(x),squareANumber(y)) : "inputs must be numeric";
+	}
+
+
+	function randomInteger(min,max) {
+		return Math.floor(Math.random() * (max - min + 1)) + min;
+	}
+
+	function isNumeric(x) {
+		return (typeof x == "number") ? true : false;
+	}
+
+
+	var firstNum = randomInteger(1,20);
+	console.log(firstNum)
+	var secondNum = randomInteger(1,20)
+	console.log(secondNum)
+
+	console.log(sumTwoSquares(firstNum,secondNum));
+
+
+	</script>
+</body>
+</html>
