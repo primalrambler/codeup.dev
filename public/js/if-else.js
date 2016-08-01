@@ -1,106 +1,85 @@
 "use strict";
 
-/*Problem 1 Knowing that a student's grades are 70, 80, 95. Write a JS program, 
-using conditionals that logs to the console "You're awesome" if the average of
-her grades is greater than 80, otherwise the message should be "You need to practice more". */
+//problem 1
 
-var testGrade1 = 70;
-var testGrade2 = 80;
-var testGrade3 = 95;
-var average = (testGrade1 + testGrade2 + testGrade3)/3
-//var message;
+//all returns in problem 1 can be reduced to ternary statements
 
-console.log (average.toFixed(2))
-
-if (average > 80) {
-	console.log("You're awesome")
-	//could assign message = "You're awesome"
-} else {
-	console.log("You need to practice more")
-	//could assign message = "You need...."
-}
-	//and then console.log(message)
-
-/* HEB has an offer for the clients that buy products amounting more than $200. 
-The discount is 35% off the purchase. Write a JS program, using conditionals, 
-that logs to the browser, how much Ryan, Cameron and George need to pay. 
-We know that Cameron bought $180, Ryan $250 and George $320. Your program will 
-have to display a line with the name of the person, the amount before the discount, 
-if any, and the amount after the discount. The output of your code should be 
-similar to the following one:
-Luis bought $100.00, no discount was applied. Final payment: $100.00.
-Zach bought $220.00, discount was applied. Final payment: $143.00. */
-
-var discount = 0.35
-var breakPoint = 200.00
-var finalPayment;
-
-var cameronBought = 180.00
-var ryanBought = 250.00
-var georgeBought = 320.00
-
-if (cameronBought > breakPoint) {
-	finalPayment = cameronBought * (1-discount);
-	console.log("Cameron bought $" + cameronBought.toFixed(2) + ", discount was applied. Final payment: $" + finalPayment.toFixed(2));
-} else {
-	//could set finalPayment = cameronBought and replace it at the end of this console log
-	console.log("Cameron bought $" + cameronBought.toFixed(2) + ", no discount was applied. Final payment: $" + cameronBought.toFixed(2));
-
-}
-
-if (ryanBought > breakPoint) {
-	finalPayment = ryanBought * (1-discount);
-	console.log("Ryan bought $" + ryanBought.toFixed(2) + ", discount was applied. Final payment: $" + finalPayment.toFixed(2));
-} else {
-	console.log("Ryan bought $" + ryanBought.toFixed(2) + ", no discount was applied. Final payment: $" + ryanBought.toFixed(2));
-
-}
-
-if (georgeBought > breakPoint) {
-	finalPayment = georgeBought * (1-discount);
-	console.log("George bought $" + georgeBought.toFixed(2) + ", discount was applied. Final payment: $" + finalPayment.toFixed(2));
-} else {
-	console.log("George bought $" + georgeBought.toFixed(2) + ", no discount was applied. Final payment: $" + georgeBought.toFixed(2));
-
+function testAverage(grade1,grade2,grade3) {
+	var average = (grade1 + grade2 + grade3)/3;
+	return average;
 }
 
 
-/* Suppose your friend Isaac cannot decide between two options. 
-He doesn't know if he should buy a car or a new house. Help him decide! 
-Write a small JS program. The following line generates either a 0 or a 1 randomly.
-var flipACoin = Math.floor(Math.random()* 2)
-Add an if statement to log a "Buy a car" to the console 
-if the result is 0 and "Buy a house" if the result is 1. 
-Could this program be written using a ternary operator? */
-
-var flipACoin = Math.floor(Math.random()* 2);
-
-/* with Math.random() it will returns a number
-between 0 (inclusive) and 1 (exclusive). 
-The Math.floor() function returns the largest integer less than or equal to a given number.
-So any random number > 0.5 that is doubled will return 1 and 
-any random number < 0.5 that is doubled will return 0
-*/
-
-console.log(flipACoin);
-
-if (flipACoin === 0) {
-	console.log("Buy a car");
-} else {
-	console.log("Buy a house");
+function testPerformance(grade1,grade2,grade3) {
+	var goodEnuff = (testAverage(grade1,grade2,grade3) > 80) ? true : false;
+	return goodEnuff;
 }
 
-console.log("Now for the ternary...");
+
+function testMessage(grade1,grade2,grade3) {
+	var message =  (testPerformance(grade1,grade2,grade3)) ? "You're awesome" : "You need to practice more";
+	return message;
+}
+		
+console.log(testMessage(70,80,95));
 
 
-var message = (flipACoin === 0)? "Buy a car" : "Buy a House";
+//problem 2
 
-console.log(message);
+function checkDiscount (salesAmount,breakPoint) {
+	 return (salesAmount > breakPoint) ? true : false;
+	}
 
-console.log("Now for the ternary as a straight up console.log...");
-console.log((flipACoin === 0)? "Buy a car" : "Buy a House");
+function finalSales(salesAmount,breakPoint,discount) {
+	return (checkDiscount(salesAmount,breakPoint)) ? salesAmount * (1 - discount) : salesAmount;
+	}
+
+function registerMessage(salesAmount,breakPoint,discount,customerName) {
+	var message = (customerName + " bought $" + salesAmount.toFixed(2) + " of stuff.\n");
+
+	(checkDiscount(salesAmount,breakPoint)) ? message += "A discount of " + discount.toFixed(2) * 100 + "% was applied.\n" : 
+		message += "No discount was applied.\n"
+
+	message += customerName + "'s final amount is $" + finalSales(salesAmount, breakPoint,discount).toFixed(2);
+	
+	return message;
+}
+
+console.log(registerMessage(444,200,0.35,"Jimbo"))
+
+
+
+//problem 3
+
+
+function flipACoin() {
+	return Math.floor(Math.random()* 2);
+}
+
+function buyThis() {
+	var message = (flipACoin() === 0) ? "Buy a car" : "Buy a House";
+	return message;
+}
+
+console.log(buyThis());
+
+
+
+// my stuff
+
+
+function randomInteger(min,max) {
+	return Math.floor(Math.random() * (max - min + 1)) + min;
+}
+
+
+function isOdd(number){
+	return (number % 2 != 0)? true : false;
+}
 
 
 
 
-
+//write functions that perform the following acctions
+//sum two numbers
+//subtract one 
