@@ -1,11 +1,41 @@
 "use strict";
 
 
-// Clock
+function doSomething() {
+	1 + 1;
+	console.log('happy monday guys!');
+}
+doSomething();
 
-for (var i = 1; i <= 5; i += 1) {
-	for (var j = 0; j <60; j +=1) {
-		console.log(i + ":" + j);
-	}
+function returnThree() {
+	return 3;
 }
 
+function addTwo(number) {
+	var result = number + 2;
+	return result;
+}
+
+console.log(addTwo(2));
+
+function addTwoAgain(number) {
+	return number + 2;
+}
+
+console.log(addTwoAgain(2));
+
+
+function multiply(x,y) {
+	return x * y;
+}
+
+console.log(multiply(4,6));
+
+function yell(phrase) {
+	return phrase.toUpperCase() + "!";
+}
+
+
+var examplePhrase = "happy monday";
+
+console.log (yell(examplePhrase));
