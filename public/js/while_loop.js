@@ -87,7 +87,7 @@ console.log("Yay! I sold them all")
 
 
 var maxIteration =  65536;
-var i = 2;
+ i = 2;
 
 while (i <= maxIteration) {
 	console.log(i);
