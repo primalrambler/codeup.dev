@@ -41,6 +41,9 @@
             <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
                 <ul class="nav navbar-nav navbar-right">
                     <li>
+                        <a href="/p001_index.php">HOME</a>
+                    </li>
+                    <li>
                     	<a href="/#">RESUME</a>
                     </li>
                     <li>
@@ -185,34 +188,69 @@
             <div class="row">
 
                 <div class="col-lg-4 col-sm-6">
-                    <h3>CODEUP</h3>
-                    <p>July - November 2016</p>
-                    <p class="lead">Full Stack Web Development</p>
+                    <a href="http://codeup.com/" target="_blank">
+                        <img src="/img/codeup-logo.png" class="img-responsive img-college hover">
+                    </a>
+                    <div class="bg-education bg-codeup">
+                        <div class="transbox">
+                            <h3>CODEUP</h3>
+                            <p>July - November 2016</p>
+                            <p class="lead">Full Stack Web Development</p>
+                        </div>
+                    </div>
                 </div>
 
                 <div class="col-lg-4 col-sm-6">
-                    <h3>TEXAS A&M UNIVERSITY</h3>
-                    <p>January - December 2000</p>
-                    <p class="lead">Master of Engineering</p>
-                    <p>Civil Engineering, GPA 3.7X
+                    <div class="bg-education bg-am">
+                        <a href="http://tamu.edu/" target="_blank">
+                            <img src="/img/TAMLogoBox.png" class="img-responsive img-college hover">
+                        </a>
+                        <div class="transbox">
+                            <h3>TEXAS A&M UNIVERSITY</h3>
+                            <p>January - December 2000</p>
+                            <p class="lead">Master of Engineering</p>
+                            <p>Civil Engineering</p>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-lg-4 col-sm-6">
-                    <h3>TEXAS A&M UNIVERSITY</h3>
-                    <p>September 1997 - December 1999</p>
-                    <p class="lead">Bachelor of Science</p>
-                    <p>Civil Engineering, GPA 3.62
+                    <div class="bg-education bg-am">
+                        <a href="http://tamu.edu/" target="_blank">
+                            <img src="/img/TAMLogoBox.png" class="img-responsive img-college hover">
+                        </a>
+                        <div class="transbox">
+                            <h3>TEXAS A&M UNIVERSITY</h3>
+                            <p>September 1997 - December 1999</p>
+                            <p class="lead">Bachelor of Science</p>
+                            <p>Civil Engineering</p>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-lg-4 col-sm-6">
-                    <h3>US AIR FORCE ACADEMY</h3>
-                    <p>June 1989 - June 1993</p>
-                    <p class="lead">Bachelor of Science</p>
-                    <p>General Studies, Dean's List
+                    <div class="bg-education bg-airforce">
+                    <a href="http://academyadmissions.com/" target="_blank">
+                        <img src="/img/usafa-shield.svg" class="img-responsive img-college hover">
+                    </a>
+                        <div class="transbox">
+                            <h3>US AIR FORCE ACADEMY</h3>
+                            <p>June 1989 - June 1993</p>
+                            <p class="lead">Bachelor of Science</p>
+                            <p>General Studies</p>
+                        </div>
+                    </div>
                 </div>
                 <div class="col-lg-4 col-sm-6">
-                    <h3>PROFESSIONAL ENGINEER</h3>
-                    <p>Active</p>
-                    <p class="lead">Texas Board of Professional Engineers</p>
-                    <p>License No. 95615
+                    <div class="bg-education bg-tbpe">
+                    <a href="https://engineers.texas.gov/" target="_blank">
+                        <img src="/img/tbpe-logo.jpg" class="img-responsive img-college">
+                    </a>
+                        <div class="transbox">
+                            <h3>PROFESSIONAL ENGINEER</h3>
+                            <p>Active</p>
+                            <p class="lead">Texas Board of Professional Engineers</p>
+                            <p>License No. 95615</p>
+                        </div>
+                    </div>
                 </div>
 
             </div>
