@@ -1,41 +1,30 @@
 "use strict";
 
+// take a string and remove the spaces
+// input ==> 'hello there lassen'
+// output ==> 'hellotherelassen'
 
-function doSomething() {
-	1 + 1;
-	console.log('happy monday guys!');
-}
-doSomething();
+	// while there is a space in the string, remove that space
 
-function returnThree() {
-	return 3;
-}
-
-function addTwo(number) {
-	var result = number + 2;
-	return result;
+function stringContains(haystack,needle) {
+	if (haystack.indexOf(needle) !== -1) {
+		return true;
+	} else {
+		return false;
+	}
 }
 
-console.log(addTwo(2));
-
-function addTwoAgain(number) {
-	return number + 2;
+function hasASpace(stringToCheck) {
+	var stringHasASpace = stringContains(stringToCheck," ");
+	return stringHasASpace;
 }
 
-console.log(addTwoAgain(2));
+function removeSpaces(phrase) {
+
+	while (hasASpace(phrase)) {
+		phrase = phrase.replace(" ","");
+		}
+	return phrase;
+	}
 
 
-function multiply(x,y) {
-	return x * y;
-}
-
-console.log(multiply(4,6));
-
-function yell(phrase) {
-	return phrase.toUpperCase() + "!";
-}
-
-
-var examplePhrase = "happy monday";
-
-console.log (yell(examplePhrase));

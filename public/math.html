@@ -15,20 +15,27 @@
 	<h1>RESULTS ARE IN THE CONSOLE</h1>
 	<script type="text/javascript">
 
+	"use strict";
+
+	
+	function isNumeric(x) {
+		return (isNaN(x)) ? false : true;
+	}
+
 	function sumTwoNumbers(x,y) {
-		return (isNumeric(x) && isNumeric(y))? x + y : "inputs must be numeric"; 
+		return (isNumeric(x) && isNumeric(y))? parseFloat(x) + parseFloat(y) : "inputs must be numeric"; 
 	}
 
 	function subtractTwoNumbers(x,y) {
-		return (isNumeric(x) && isNumeric(y))? x - y : "inputs must be numeric";
+		return (isNumeric(x) && isNumeric(y))? parseFloat(x) - parseFloat(y) : "inputs must be numeric";
 	}
 
 	function multiplyTwoNumbers(x,y) {
-		return (isNumeric(x) && isNumeric(y))? x * y : "inputs must be numeric";
+		return (isNumeric(x) && isNumeric(y))? parseFloat(x) * parseFloat(y) : "inputs must be numeric";
 	}
 
 	function divideTwoNumbers(x,y){
-		return (y == 0) ? "you are dividing by zero" : x / y;
+		return (y == 0) ? "you are dividing by zero" : parseFloat(x) / parseFloat(y);
 	}
 
 	function squareANumber(x) {
@@ -43,11 +50,6 @@
 	function randomInteger(min,max) {
 		return Math.floor(Math.random() * (max - min + 1)) + min;
 	}
-
-	function isNumeric(x) {
-		return (typeof x == "number") ? true : false;
-	}
-
 
 	var firstNum = randomInteger(1,20);
 	console.log(firstNum)
