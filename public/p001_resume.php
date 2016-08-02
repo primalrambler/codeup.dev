@@ -189,7 +189,7 @@
 
                 <div class="col-lg-4 col-sm-6">
                     <a href="http://codeup.com/" target="_blank">
-                        <img src="/img/codeup-logo.png" class="img-responsive img-college hover">
+                        <img src="/img/Codeup-logo-2.png" class="img-responsive img-college hover">
                     </a>
                     <div class="bg-education bg-codeup">
                         <div class="transbox">
