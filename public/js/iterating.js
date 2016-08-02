@@ -32,10 +32,11 @@
     	console.log(names[i]);
     }
 
-    console.log("Using a forEach function")
-    names.forEach(function (element,index,array){
     	// console.log(element == array[index]);
     	// console.log(element == names[index]);
+    	
+    console.log("Using a forEach function")
+    names.forEach(function (element,index,array){
     	console.log(element);
     });
 
