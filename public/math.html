@@ -12,53 +12,12 @@
 </head>
 
 <body>
-	<h1>RESULTS ARE IN THE CONSOLE</h1>
-	<script type="text/javascript">
+	<h1>USING INPUT DIALOG BOXES</h1>
 
-	"use strict";
 
 	
-	function isNumeric(x) {
-		return (isNaN(x)) ? false : true;
-	}
-
-	function sumTwoNumbers(x,y) {
-		return (isNumeric(x) && isNumeric(y))? parseFloat(x) + parseFloat(y) : "inputs must be numeric"; 
-	}
-
-	function subtractTwoNumbers(x,y) {
-		return (isNumeric(x) && isNumeric(y))? parseFloat(x) - parseFloat(y) : "inputs must be numeric";
-	}
-
-	function multiplyTwoNumbers(x,y) {
-		return (isNumeric(x) && isNumeric(y))? parseFloat(x) * parseFloat(y) : "inputs must be numeric";
-	}
-
-	function divideTwoNumbers(x,y){
-		return (y == 0) ? "you are dividing by zero" : parseFloat(x) / parseFloat(y);
-	}
-
-	function squareANumber(x) {
-		return (isNumeric(x))? multiplyTwoNumbers(x,x) : "inputs must be numeric";
-	}
-
-	function sumTwoSquares(x,y) {
-		return (isNumeric(x) && isNumeric(y))? sumTwoNumbers(squareANumber(x),squareANumber(y)) : "inputs must be numeric";
-	}
 
 
-	function randomInteger(min,max) {
-		return Math.floor(Math.random() * (max - min + 1)) + min;
-	}
-
-	var firstNum = randomInteger(1,20);
-	console.log(firstNum)
-	var secondNum = randomInteger(1,20)
-	console.log(secondNum)
-
-	console.log(sumTwoSquares(firstNum,secondNum));
-
-
-	</script>
+	<script src="/js/math.js"></script>
 </body>
 </html>
