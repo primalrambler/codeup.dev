@@ -12,49 +12,101 @@
 
 
 
-function getFirstNum (){
-	var firstNumber = prompt("Enter the first number:");
-}
-
-function getSecondNum (){
-	var secondNumber = prompt("Enter the second number");
+function getANumber () {
+	do {
+		var theNumber = prompt("Enter a number");
+	} while (isNaN(theNumber));
+	return parseFloat(theNumber);
 }
 
 
 function getMathToDo (){
-	var whatMathToDo = prompt("What do you want to do? Add, subtract, divide or multiply?");
-	
-	whatMathToDo;
-	whatMathToDo = whatMathToDo.toLowerCase();
-	return whatMathToDo.substring(0,3);
+		var operations = ["add", "sub", "div", "mul", "ave", "squ"];
+
+	do {
+		var whatMathToDo = prompt("What do you want to do?\nADD, SUBtract, DIVide, MULtiply?\n Or maybe SQUare a number or AVErage 3 numbers?");
+		whatMathToDo = whatMathToDo.toLowerCase();
+		whatMathToDo = whatMathToDo.substring(0,3);
+	} while (operations.indexOf(whatMathToDo) == -1);
+	return whatMathToDo;
+}
+
+function promptsForNumbers (operation) {
+	switch(operation) {
+		case "sub" :
+			alert('Enter numbers in order for x - y');
+			break;
+		case "div" :
+			alert('Enter numbers in order for x /y\nRemember NO zeros');
+			break;
+		case "squ" :
+			alert('Enter the number you want to square');
+			break;
+		default : 
+			alert('Enter numbers in any order\nGod bless order of operations!');
+			break;
 	}
-
 }
 
-function isNumeric(x) {
-	return (isNaN(x)) ? false : true;
-}
 
 function sumTwoNumbers(x,y) {
-	return (isNumeric(x) && isNumeric(y))? parseFloat(x) + parseFloat(y) : "inputs must be numeric"; 
+	return x + y; 
 }
 
 function subtractTwoNumbers(x,y) {
-	return (isNumeric(x) && isNumeric(y))? parseFloat(x) - parseFloat(y) : "inputs must be numeric";
+	return x - y;
 }
 
 function multiplyTwoNumbers(x,y) {
-	return (isNumeric(x) && isNumeric(y))? parseFloat(x) * parseFloat(y) : "inputs must be numeric";
+	return x * y;
 }
 
 function divideTwoNumbers(x,y){
-	return (y == 0) ? "you are dividing by zero" : parseFloat(x) / parseFloat(y);
+	return (y == 0) ? "you are dividing by zero\nGOODBYE..." : x / y;
 }
 
 function squareANumber(x) {
-	return (isNumeric(x))? multiplyTwoNumbers(x,x) : "inputs must be numeric";
+	return multiplyTwoNumbers(x,x);
 }
 
-function sumTwoSquares(x,y) {
-	return (isNumeric(x) && isNumeric(y))? sumTwoNumbers(squareANumber(x),squareANumber(y)) : "inputs must be numeric";
+function averageOfThree(x,y,z) {
+	return (x + y + z)/3;
 }
+
+
+
+function doMath(){
+	
+	var operationToDo = getMathToDo();
+
+	promptsForNumbers(operationToDo);
+
+	switch (operationToDo) {
+		case "add" : 
+			var result = sumTwoNumbers(getANumber(), getANumber());
+			break;
+		case "sub" :
+			var result = subtractTwoNumbers(getANumber(), getANumber());
+			break;
+		case "div" :
+			var result = divideTwoNumbers(getANumber(), getANumber());
+			break;
+		case "mul" :
+			var result = multiplyTwoNumbers(getANumber(), getANumber());
+			break;
+		case "squ" :
+			var result = squareANumber(getANumber());
+			break;
+		case "ave" :
+			var result = averageOfThree(getANumber(), getANumber(),getANumber());
+			break;
+		}
+
+	alert("The result is " + result);
+
+	return result;
+}
+
+doMath();
+
+
