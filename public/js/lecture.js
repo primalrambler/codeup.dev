@@ -1,30 +1,20 @@
 "use strict";
+(function() {
 
-// take a string and remove the spaces
-// input ==> 'hello there lassen'
-// output ==> 'hellotherelassen'
+var userLikesPizza = confirm('Do you like pizza?');
 
-	// while there is a space in the string, remove that space
+console.log('userLikesPizza:' + userLikesPizza)
 
-function stringContains(haystack,needle) {
-	if (haystack.indexOf(needle) !== -1) {
-		return true;
-	} else {
-		return false;
-	}
+
+var favoriteColor = prompt('What is your favorite color?')
+
+console.log(favoriteColor);
+
+
+var sayHello = function (name) {
+	return 'hello ' + name;
 }
 
-function hasASpace(stringToCheck) {
-	var stringHasASpace = stringContains(stringToCheck," ");
-	return stringHasASpace;
-}
+console.log(sayHello('Dan'));
 
-function removeSpaces(phrase) {
-
-	while (hasASpace(phrase)) {
-		phrase = phrase.replace(" ","");
-		}
-	return phrase;
-	}
-
-
+})();
