@@ -77,9 +77,9 @@
                         <h3>born to an alien mother on an air force base in new mexico</h3>
                         <hr class="intro-divider">
                         <ul class="list-inline intro-social-buttons">
-                           <!--  <li>
-                                <a href="https://twitter.com/SBootstrap" class="btn btn-default btn-lg" target="_blank"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
-                            </li> -->
+                           <li>
+                                <a href="https://twitter.com/primalRambler" class="btn btn-default btn-lg" target="_blank"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
+                            </li>
                             <li>
                                 <a href="https://github.com/primalrambler" class="btn btn-default btn-lg" target="_blank"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>
                             </li>
@@ -106,7 +106,7 @@
                 <div class="col-lg-5 col-sm-6">
                     <hr class="section-heading-spacer">
                     <div class="clearfix"></div>
-                    <h2 class="section-heading">Portfolio<br>Web Development</h2>
+                    <h2 class="section-heading">Web Devlopment<br>Tag Line needed</h2>
                     <p class="lead">Say something brilliant.</p>
                 </div>
                 <div class="col-lg-5 col-lg-offset-2 col-sm-6">
@@ -129,7 +129,7 @@
                     <hr class="section-heading-spacer">
                     <div class="clearfix"></div>
                     <a href="/p001_resume.php">
-                        <h2 class="section-heading">Design, Engineering<br>and Project Management</h2>
+                        <h2 class="section-heading">Design and Engineering<br>Texas' Future Infrastructure</h2>
                     </a>
                     <p class="lead">Designs and projects across Texas for roundabouts, city streets, county roads, 5 level highway interchanges, and elevated toll roads, were all part of a 15 year civil engineering career for Dan Carroll, P.E., Texas A&M Class of '00.</p>
                 </div>
@@ -152,7 +152,7 @@
                 <div class="col-lg-5 col-sm-6">
                     <hr class="section-heading-spacer">
                     <div class="clearfix"></div>
-                    <h2 class="section-heading">Need something here<br>Web Development</h2>
+                    <h2 class="section-heading">Leadership and Service<br>Securing America's Final Frontier</h2>
                     <p class="lead">Say something here</p>
                 </div>
                 <div class="col-lg-5 col-lg-offset-2 col-sm-6">
@@ -177,6 +177,9 @@
                 </div>
                 <div class="col-lg-6">
                     <ul class="list-inline banner-social-buttons">
+                            <li>
+                                <a href="https://twitter.com/primalRambler" class="btn btn-default btn-lg" target="_blank"><i class="fa fa-twitter fa-fw"></i> <span class="network-name">Twitter</span></a>
+                            </li>
                             <li>
                                 <a href="https://github.com/primalrambler" class="btn btn-default btn-lg" target="_blank"><i class="fa fa-github fa-fw"></i> <span class="network-name">Github</span></a>
                             </li>
