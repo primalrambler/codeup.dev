@@ -1,20 +1,18 @@
 "use strict";
-(function() {
+// (function() {
 
-var userLikesPizza = confirm('Do you like pizza?');
-
-console.log('userLikesPizza:' + userLikesPizza)
+var myArray = ["Gilligan", "Skipper", "Mary Ann", "Ginger", "The Professor"]
 
 
-var favoriteColor = prompt('What is your favorite color?')
-
-console.log(favoriteColor);
-
-
-var sayHello = function (name) {
-	return 'hello ' + name;
+function randomIndex (array) {
+	return Math.floor(Math.random() * array.length);
 }
 
-console.log(sayHello('Dan'));
+function sample (array) {
+	var result = array[randomIndex(array)];
+	return result;
+}
 
-})();
+console.log(sample(myArray));
+
+// })();
