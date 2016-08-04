@@ -1,3 +1,5 @@
+(function (){
+
 var student = {
     "name": "Bob",
     "pizzaPreference": "black olives and mushrooms",
@@ -38,6 +40,7 @@ console.log(student.languages[1]);
 console.log(student.grades.html);
 // get Bob's last grade for javascript ......................... 89
 console.log(student.grades.js[2]);
+console.log(student.grades.js[student.grades.js.length-1]);
 // get Bob's first language .................................... 'html'
 console.log(student.languages[0]);
 // get the make of Bob's second car ............................ 'honda'
@@ -53,15 +56,17 @@ console.log(student.cars[0].parkingPermits[0].isActive);
 
 function averageIt(gradeArray) {
 	var sum = 0;
-	var count = 0;
-	
+	// var count = 0;
+
 	gradeArray.forEach(function(element){
 		sum += element;
-		count += 1;
+		// count += 1;
 	})
-	return sum / count;
+	// return sum / count;
+	return sum / gradeArray.length
 }
 
 console.log(student.name + " has an " + averageIt(student.grades.html) + "% average in html");
 
+})();
 
