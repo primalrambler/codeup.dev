@@ -14,6 +14,7 @@
     "use strict";
 
     var detonationTimer = 5;
+    var timeoutID = setInterval(updateTimer,1000)
 
     // TODO: This function needs to be called once every second
     function updateTimer() {
@@ -29,7 +30,6 @@
         detonationTimer--;
     }
 
-    var timeoutID = setInterval(updateTimer,1000)
 
     // TODO: When this function runs, it needs to
     // cancel the interval/timeout for updateTimer()
