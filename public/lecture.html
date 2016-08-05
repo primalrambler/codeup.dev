@@ -1,19 +1,21 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>LECTURE</title>
-    <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">
+    <title></title>
 </head>
 <body>
+    <button id="btn1">Click Me!</button>
+    <script>
+        'use strict';
 
-	<h1 class="text-center">It's all in the console</h1>
+        // create a handler function
+        function listener (event) {
+            alert('You clicked the button!');
+        }
 
-    <script type="text/javascript" src="/js/lecture.js"></script>
+        // register the listener to handle clicks on btn1
+        document.getElementById('btn1').addEventListener('click', listener, false);
 
-    
-    <!-- LEAVE THIS ALONE -->
-    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
-    <script src="//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
-
+    </script>
 </body>
 </html>
