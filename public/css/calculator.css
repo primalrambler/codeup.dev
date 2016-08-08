@@ -1,0 +1,74 @@
+.calc-button {
+    width: 75px;
+    height: 75px;
+    padding: 5px;
+    text-align: center;
+    font-size: 2.66em;
+    color: white;
+    float: left;
+    /*position: relative;*/
+}
+
+.calc-zero-button{
+    width:150px;
+    height: 75px;
+    padding: 5px;
+    text-align: center;
+    font-size: 2.66em;
+    color: white;
+    float: left;
+}
+/*.calc-button:nth-of-type(2n+1) {
+    clear:left;
+}*/
+
+.input-area {
+    /*vertical-align: text-bottom;*/
+    float: left;
+    height: 60px;
+    cursor: pointer;
+    margin-top:70px;
+    padding-top: 10px;
+    font-size: 2em;
+    color:#454545;
+    text-align: center;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+    background: #D2D4C8;
+    border: 0;
+}
+
+
+/* #Number Flat Button
+==================================================*/
+.number-flat-button {
+    background: #73877B;
+    border: 0;
+    cursor: pointer;
+}
+
+.number-flat-button:hover {
+    background-color: #839788;
+    outline: none;
+}
+/* #Pumpkin Flat Button
+==================================================*/
+.operand-flat-button {
+    background: #FAA916;
+    border: 0;
+    cursor: pointer;
+}
+
+.operand-flat-button:hover {
+    outline: none;
+    background-color: #E4572E;
+}
+
+
+
+.input-large {
+    width: 175px;
+}
+
+.input-small {
+    width: 50px;
+}
