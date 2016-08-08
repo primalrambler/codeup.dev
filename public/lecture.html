@@ -4,18 +4,19 @@
     <title></title>
 </head>
 <body>
-    <button id="btn1">Click Me!</button>
-    <script>
-        'use strict';
+    <h2>Available Toppings</h2>
+    <ul>
+        <li class="topping">Pepperoni</li>
+        <li class="topping">Bacon</li>
+        <li class="topping">Black Olives</li>
+        <li class="topping">Peppers</li>
+        <li class="topping">Mushrooms</li>
+    </ul>
 
-        // create a handler function
-        function listener (event) {
-            alert('You clicked the button!');
-        }
+    <h2>Selected Toppings</h2>
+    <ul class="selectedToppings"></ul>
 
-        // register the listener to handle clicks on btn1
-        document.getElementById('btn1').addEventListener('click', listener, false);
+    <script src="/js/lecture.js"></script>
 
-    </script>
 </body>
 </html>
