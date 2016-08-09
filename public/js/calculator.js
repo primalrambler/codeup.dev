@@ -4,8 +4,7 @@
 //global variables
 
 var globalOperand = "";
-var clearStart = true;
-
+var percentChanged = "";
 
 
 // Add and Assign Event Listeners -------------------------------------------//
@@ -30,6 +29,9 @@ equalsButton.addEventListener("click",doMath);
 var plusMinusButton = document.getElementById("plusmn");
 plusMinusButton.addEventListener("click", plusMinus);
 
+var percentageButton = document.getElementById("percentage");
+percentageButton.addEventListener("click", percentage);
+
 
 //Input Functions ----------------------------------------------//
 
@@ -40,7 +42,7 @@ function numberInput (e){
 	if (inputLocation == 'operand') {
 		// alert('enter an operand')
 	} else {
-		var firstNum = inputToModify.innerText;
+		var firstNum = inputToModify.innerHTML;
 		firstNum += this.value;
 		inputToModify.innerHTML = firstNum;		
 	}
@@ -48,15 +50,26 @@ function numberInput (e){
 
 function plusMinus (e){
 	var inputToModify = document.getElementById(inputLocation);
-	console.log(inputToModify);
-	var endIndex = inputToModify.innerText.length;
-	console.log(endIndex);
-	var sign = inputToModify.innerText.slice(0,1);
-	console.log(sign);
-	if (sign == "-"){
-		inputToModify.innerHTML = inputToModify.innerText.slice(1,endIndex);
+	var plusMinusNum = parseFloat(inputToModify.innerHTML);
+	var result = -1 * plusMinusNum;
+	inputToModify.innerHTML = result.toString();
+}
+
+function percentage (e) {
+	var inputToModify = document.getElementById(inputLocation);
+	console.log("input location: " + inputLocation);
+	var percentageNum = parseFloat(inputToModify.innerHTML);
+	console.log('percentageNum: ' + percentageNum);
+	console.log('percentChanged: ' + percentChanged);
+	if (percentChanged == inputLocation){
+		var result = percentageNum * 100;
+		console.log(result)
+		inputToModify.innerHTML = result.toString();
+		percentChanged = "";
 	} else {
-		inputToModify.innerHTML = "-" + inputToModify.innerHTML;
+		var result = percentageNum / 100;
+		inputToModify.innerHTML = result.toString();
+		percentChanged = inputLocation;
 	}
 }
 
@@ -72,6 +85,7 @@ function clearAll (e) {
 	document.getElementById("displayRight").innerHTML = "";
 	document.getElementById("operand").innerHTML = "";
 	inputLocation = "displayLeft";
+	percentChanged = "";
 }
 
 
@@ -127,6 +141,7 @@ function doMath (){
 	document.getElementById("operand").innerHTML = "";
 	document.getElementById("displayRight").innerHTML = "";
 	inputLocation = "operand";
+	percentChanged = "";
 }
 
 
