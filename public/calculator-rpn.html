@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset = "utf-8">
+    <title>Calculator</title>
+    <!-- Bootstrap core CSS -->
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <link href="/css/calculator-rpn.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="input-area input-large" id="line3"></div>
+                <div class="input-area hilite" id="hilite3"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="input-area input-large" id="line2"></div>
+                <div class="input-area hilite" id="hilite2"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="input-area input-large" id="line1"></div>
+                <div class="input-area hilite" id="highlight1"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <div class="input-area input-large" id="line0"></div>
+                <div class="input-area hilite" id="highlite0"></div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <button class="butn single orange" id="clear" href="#" role="button">
+                        <span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span>
+                </button>
+                <button class="butn single orange" id="clear" href="#" role="button">
+                        <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
+                </button>
+                <button class="butn single orange" id="clear" href="#" role="button">
+                        <span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span>
+                </button>
+                <button class="butn single orange modifier" href="#" role="button" id="clear">C</button>
+                <button class="butn single orange modifier" href="#" role="button" id="plusmn">&plusmn;</button>
+                <button class="butn single orange modifier" href="#" role="button" id="percentage">%</button>
+                <button class="butn single orange operand" href="#" role="button" value="divide">&divide;</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <button class="butn single orange modifier shift" href="#" role="button" id="tangent">tan</button>
+                <button class="butn single orange modifier shift" href="#" role="button" id="natlog">ln</button>
+                <button class="butn single orange modifier shift" href="#" role="button" value="log">log<sub>10</sub></button>
+                <button class="butn single green number" href="#" role="button" value="7">7</button>
+                <button class="butn single green number" href="#" role="button" value="8">8</button>
+                <button class="butn single green number" href="#" role="button" value="9">9</button>
+                <button class="butn single orange operand" href="#" role="button" value="times">&times;</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <button class="butn single orange modifier shift" href="#" role="button" id="cosine">cos</button>
+                <button class="butn single orange modifier" href="#" role="button" id="factorial">x!</button>
+                <button class="butn single orange modifier" href="#" role="button" value="inverse">1/x</button>
+                <button class="butn single green number" href="#" role="button" value="4">4</button>
+                <button class="butn single green number" href="#" role="button" value="5">5</button>
+                <button class="butn single green number" href="#" role="button" value="6">6</button>
+                <button class="butn single orange operand" href="#" role="button" value="minus" >&minus;</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <button class="butn single orange modifier" href="#" role="button" id="sin">sin</button>
+                <button class="butn single orange modifier shift" href="#" role="button" id="percentage">
+                    <span  class="shift-text">y<sup>x</sup></span>
+                    <span class="shift-text-small">x<sup>2</sup></span>
+                </button>
+                <button class="butn single orange operand shift" href="#" role="button" value="root">
+                    <span  class="shift-text"><sup>x</sup>&#x0221A;<span style="text-decoration: overline">y</span></span>
+                    <span class="shift-text-small">&#x0221A;<span style="text-decoration: overline">x</span></span>
+                </button>
+                <button class="butn single green number" href="#" role="button" value="1">1</button>
+                <button class="butn single green number" href="#" role="button" value="2">2</button>
+                <button class="butn single green number" href="#" role="button" value="3">3</button>
+                <button class="butn single orange operand" href="#" role="button" value="plus">+</button>
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <button class="butn single orange number" value="PI">π</button>
+                <button class="butn double blue number" id="shift" value="0">SHIFT</button>
+                <button class="butn single green number" value="0">0</button>
+                <button class="butn single green number" id="decimal" value=".">.</button>
+                <button class="butn double blue" id="enter">ENTER</button>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+    <script src="/js/calculator-rpn.js"></script>
+    <!-- Bootstrap core JavaScript
+        ================================================== -->
+    <!-- Placed at the end of the document so the pages load faster -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</body>
+</html>

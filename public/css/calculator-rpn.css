@@ -1,0 +1,102 @@
+body {
+    padding-top: 70px;
+}
+
+.butn {
+    height: 50px;
+    padding: 5px;
+    text-align: center;
+    font-size: 2em;
+    color: white;
+    float: left;
+    position:relative;
+}
+.single {
+    width: 75px;
+    /*position: relative;*/
+}
+
+.double{
+    width:150px;
+}
+
+.shift-text {
+    text-align: left;
+    font-size: 1em;
+    padding-left: 0px;
+    position: absolute;
+    bottom:1px;
+    left: 10px;
+}
+.shift-text-small {
+    text-align: right;
+    font-size: .5em;
+    padding: 0px;
+    color: #457B9D;
+    position: absolute;
+    top: 1px;
+    right:1px;
+}
+
+.input-area {
+    /*vertical-align: text-bottom;*/
+    float: left;
+    height: 40px;
+    cursor: pointer;
+    padding-top: 5px;
+    font-size: 2em;
+    color:#454545;
+    text-align: right;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+    background: #D9DCD6;
+    border: 0;
+}
+
+
+.green {
+    background: #73877B;
+    border: 0;
+    cursor: pointer;
+}
+
+.green:hover {
+    background-color: #839788;
+    outline: none;
+}
+
+.orange {
+    background: #FAA916;
+    border: 0;
+    cursor: pointer;
+}
+
+.orange:hover {
+    outline: none;
+    background-color: #E4572E;
+}
+
+.blue {
+    background: #457B9D;
+    border: 0;
+    cursor: pointer;
+}
+
+.blue:hover {
+    outline:none;
+    background-color: #16425B
+}
+
+
+.input-large {
+    width: 515px;
+}
+
+.input-small {
+    width: 10px;
+    background-color: #334E58;
+}
+
+.hilite {
+    width: 10px;
+    background-color: #D2D4C8;
+}
