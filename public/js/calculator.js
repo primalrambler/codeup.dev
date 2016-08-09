@@ -3,15 +3,12 @@
 
 //global variables
 
-// var firstNum = "";
-// var secondNum = "";
 var globalOperand = "";
 var clearStart = true;
-var inputSide = "leftInput";
 
 
 
-// Event Listeners -------------------------------------------//
+// Add and Assign Event Listeners -------------------------------------------//
 
 var numberButtons = document.getElementsByClassName("number");
 for (var i = 0; i < numberButtons.length; i +=1){
@@ -30,18 +27,20 @@ clearButton.addEventListener("click",clearAll);
 var equalsButton = document.getElementById("equals");
 equalsButton.addEventListener("click",doMath);
 
-// function handleClick (e){
-// 	var valueClicked = this.value;
-// 	return console.log(valueClicked);
-// }
 
 //Input Functions ----------------------------------------------//
 
+var inputLocation = 'displayLeft';
+
 function numberInput (e){
-	var inputToModify = document.getElementById(inputSide);
-	var firstNum = inputToModify.innerText;
-	firstNum += this.value;
-	inputToModify.innerHTML = firstNum;
+	var inputToModify = document.getElementById(inputLocation);
+	if (inputLocation == 'operand') {
+		// alert('enter an operand')
+	} else {
+		var firstNum = inputToModify.innerText;
+		firstNum += this.value;
+		inputToModify.innerHTML = firstNum;		
+	}
 }
 
 
@@ -49,16 +48,18 @@ function operandInput (e){
 	var inputToModify = document.getElementById('operand');
 	inputToModify.innerHTML = this.innerText;
 	globalOperand = this.value;
-	inputSide = "rightInput";
+	inputLocation = "displayRight";
 }
 
 function clearAll (e) {
-	document.getElementById("leftInput").innerHTML = "";
-	document.getElementById("rightInput").innerHTML = "";
+	document.getElementById("displayLeft").innerHTML = "";
+	document.getElementById("displayRight").innerHTML = "";
 	document.getElementById("operand").innerHTML = "";
-	inputSide = "leftInput";
+	inputLocation = "displayLeft";
 }
 
+
+	
 
 // Mathematical Functions -------------------------------------//
 
@@ -88,8 +89,8 @@ function division(firstNum,secondNum){
 
 function doMath (){
 	var operandValue = document.getElementById('operand').innerText;
-	var firstNum = document.getElementById('leftInput').innerText;
-	var secondNum = document.getElementById('rightInput').innerText;
+	var firstNum = document.getElementById('displayLeft').innerText;
+	var secondNum = document.getElementById('displayRight').innerText;
 	var result;
 
 	switch (globalOperand) {
@@ -106,10 +107,10 @@ function doMath (){
 			result = division(firstNum,secondNum);
 			break;
 	}
-	document.getElementById("leftInput").innerHTML = result;
-	document.getElementById("rightInput").innerHTML = "";
+	document.getElementById("displayLeft").innerHTML = result;
 	document.getElementById("operand").innerHTML = "";
-	inputSide = "rightInput";
+	document.getElementById("displayRight").innerHTML = "";
+	inputLocation = "operand";
 }
 
 
