@@ -27,6 +27,9 @@ clearButton.addEventListener("click",clearAll);
 var equalsButton = document.getElementById("equals");
 equalsButton.addEventListener("click",doMath);
 
+var plusMinusButton = document.getElementById("plusmn");
+plusMinusButton.addEventListener("click", plusMinus);
+
 
 //Input Functions ----------------------------------------------//
 
@@ -43,6 +46,19 @@ function numberInput (e){
 	}
 }
 
+function plusMinus (e){
+	var inputToModify = document.getElementById(inputLocation);
+	console.log(inputToModify);
+	var endIndex = inputToModify.innerText.length;
+	console.log(endIndex);
+	var sign = inputToModify.innerText.slice(0,1);
+	console.log(sign);
+	if (sign == "-"){
+		inputToModify.innerHTML = inputToModify.innerText.slice(1,endIndex);
+	} else {
+		inputToModify.innerHTML = "-" + inputToModify.innerHTML;
+	}
+}
 
 function operandInput (e){
 	var inputToModify = document.getElementById('operand');
