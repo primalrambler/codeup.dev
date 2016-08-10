@@ -13,8 +13,6 @@ var flagEnter = 0;
 var flagOperand = 0;
 
 
-console.log("number Array: " + numberArray);
-
 // Add and Assign Event Listeners -------------------------------------------//
 
 var numberButtons = document.getElementsByClassName("number");
@@ -30,7 +28,6 @@ for (var i = 0; i < operandButtons.length; i +=1){
 var clearAllButton = document.getElementById("clearall");
 clearAllButton.addEventListener("click",clearAll);
 
-
 var equalsButton = document.getElementById("enter");
 equalsButton.addEventListener("click",afterEnter);
 
@@ -39,6 +36,9 @@ plusMinusButton.addEventListener("click", plusMinus);
 
 var percentageButton = document.getElementById("percentage");
 percentageButton.addEventListener("click", percentage);
+
+var inverseButton = document.getElementById("inverse");
+percentageButton.addEventListener("click", inverse);
 
 
 //Display Functions ----------------------------------------------//
@@ -74,9 +74,10 @@ function afterEnter(){
 }
 
 function displayUpdate() {
-	for (var i = 3; i >= 0; i -=1) { //shift everything up
+	for (var i = 3; i >= 0; i -=1) {
 		var lineId = "line" + i;
 		if (numberArray[i] != undefined) {  // display it only if it's defined
+			console.log(numberArray[i]);
 			document.getElementById(lineId).innerHTML = numberArray[i];
 		} else{
 			document.getElementById(lineId).innerHTML = null;
@@ -93,15 +94,20 @@ function plusMinus (e){
 
 function percentage (e) {
 	var inputToModify = parseFloat(numberArray[0]);
+	console.log(inputToModify);
+	console.log(flagPercent);
 	var result;
+
 	if (flagPercent == 0){
-		result = inputToModify / 100
+		inputToModify = parseFloat(inputToModify) / 100;
+		console.log(numberArray[0])
 		flagPercent = 1;
 	} else {
 		result = inputToModify * 100;
 		flagPercent = 0;
+		console.log(result);
+		numberArray[0]=result;
 	}
-	numberArray[0] = result;
 	displayUpdate();
 }
 
@@ -113,6 +119,13 @@ function clearAll (e) {
 	flagPercent = 0;
 	flagEnter = 0;
 	flagOperand = 0;
+	displayUpdate();
+}
+
+function inverse (e) {
+	var inputToModify = parseFloat(numberArray[0]);
+	var result = 1 / inputToModify.toString();
+	numberArray[0] = result;
 	displayUpdate();
 }
 
