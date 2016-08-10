@@ -1,25 +1,17 @@
 "use strict";
 
 
-function addTopping () {
-	var newTopping = '';
 
-	newTopping += "<li>";
-	newTopping += this.innerText;
-	newTopping += "</li>";
+var myMap = document.getElementById('my-map');
 
-	selectedToppings.innerHTMl += newTopping;
+var mapOptions = {
+	zoom: 18,
 
-	this.innerText += ' selected!';
-	this.style.backgroundColor = 'yellow';
-}
+	//position of codeup
+	center: {
+		lat: 29.426791,
+		lng: -98.489602
+	}
+};
 
-
-var toppings = document.getElementsByClassName('topping');
-var selectedToppings = document.getElementById('selectedToppings');
-var topping;
-
-for (var i = 0; i < toppings.length; i +=1 ) {
-	topping = toppings[i];
-	topping.addEventListener('click',addTopping)
-}
+var map = new google.maps.Map(myMap, mapOptions);
