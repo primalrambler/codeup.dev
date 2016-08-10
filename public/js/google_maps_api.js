@@ -1,32 +1,8 @@
 // (function() {
     "use strict";
 
-var mapOptions = {
-    // Set the zoom level
-    zoom: 18,
-
-    // This sets the center of the map at our location
-    center: {
-        lat:  29.568503,
-        lng: -98.487987
-    }
-};
-
-var restaurant = {lat:  29.568503, lng: -98.487987};
-
-// Render the map
-var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
-
-    var marker = new google.maps.Marker({
-      position: restaurant,
-      map: map,
-      draggable: true,
-      animation: google.maps.Animation.DROP
-    });
-
-    marker.addListener('click', toggleBounce);
-
-
+    var address = "300 W Bitters Rd #120, San Antonio, TX 78216";
+    var addressObject = {};
     function toggleBounce() {
         if (marker.getAnimation() !== null) {
           marker.setAnimation(null);
@@ -36,26 +12,59 @@ var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions)
     }
 
 
-  // info window
+    // Init geocoder object
+    var geocoder = new google.maps.Geocoder();
 
-    var contentString = '<h2>Taste of Asia</h2>'+
-    '<p><h3>Favorite Dishes</h3></p>'+
-    '<ul>'+
-    '<li>Chicken Lemongrass</li>'+
-    '<li>Spring Rolls</li>'+
-    '</ul>';
+    geocoder.geocode({"address": address}, function(results,status){
+        if (status == google.maps.GeocoderStatus.OK) {
+
+            //add a marker
+            var marker = new google.maps.Marker({
+                position: results[0].geometry.location,
+                map: map,
+                draggable: true,
+                animation: google.maps.Animation.DROP
+            });
+
+            marker.addListener('click', toggleBounce);
 
 
-        var infowindow = new google.maps.InfoWindow({
-         content: contentString
-        });
-   
-        marker.addListener('click', function(){
-            infowindow.open(map,marker);
-            setTimeout (function(){
-                marker.setAnimation(null);
-            },1000);
-        });
 
+
+            
+            map.setCenter(results[0].geometry.location);
+
+        } else{
+            // Show an error message with the status if our request fails
+           alert("Geocoding was not successful - STATUS: " + status);
+        }
+    });
+          // info window - doesn't work b/c of geocode use
+
+            // var contentString = '<h2>Taste of Asia</h2>'+
+            // '<p><h3>Favorite Dishes</h3></p>'+
+            // '<ul>'+
+            // '<li>Chicken Lemongrass</li>'+
+            // '<li>Spring Rolls</li>'+
+            // '</ul>';
+
+
+            // var infowindow = new google.maps.InfoWindow({
+            //  content: contentString
+            // });
+
+            // marker.addListener('click', function(){
+            //     infowindow.open(map,marker);
+            //     setTimeout (function(){
+            //         marker.setAnimation(null);
+            //     },1500);
+            // });
+
+    // Render the map
+    var map = new google.maps.Map(document.getElementById("map-canvas"), {
+        zoom: 17
+    });
+
+    
 
     // })();
