@@ -10,94 +10,98 @@
 </head>
 <body>
     <div class="container">
+        <!-- the display is broken up into 4 rows
+        a second far right column will be used for highlighting
+        which row is being edited (future feature) -->
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-8">
                 <div class="input-area input-large" id="line3"></div>
                 <div class="input-area hilite" id="hilite3"></div>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-8">
                 <div class="input-area input-large" id="line2"></div>
                 <div class="input-area hilite" id="hilite2"></div>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-8">
                 <div class="input-area input-large" id="line1"></div>
                 <div class="input-area hilite" id="highlight1"></div>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-6">
+            <div class="col-md-8">
                 <div class="input-area input-large" id="line0"></div>
                 <div class="input-area hilite" id="highlite0"></div>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-6">
-                <button class="butn single orange" id="clear" href="#" role="button">
+            <div class="col-md-8">
+                <button class="btn butn single" id="clear" href="#" role="button">
                         <span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span>
                 </button>
-                <button class="butn single orange" id="clear" href="#" role="button">
+                <button class="btn butn single" id="clear" href="#" role="button">
                         <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
                 </button>
-                <button class="butn single orange" id="clear" href="#" role="button">
+                <button class="btn butn single" id="clear" href="#" role="button">
                         <span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span>
                 </button>
-                <button class="butn single orange modifier" href="#" role="button" id="clearall">AC</button>
-                <button class="butn single orange modifier" href="#" role="button" id="plusmn">&plusmn;</button>
-                <button class="butn single orange modifier" href="#" role="button" id="percentage">%</button>
-                <button class="butn single orange operand" href="#" role="button" value="divide">&divide;</button>
+                <button class="btn butn single modifier" href="#" role="button" id="clearall">AC</button>
+                <button class="btn butn single modifier" href="#" role="button" id="plusmn">&plusmn;</button>
+                <button class="btn butn single modifier" href="#" role="button" id="percentage">%</button>
+                <button class="btn butn single operand" href="#" role="button" value="divide">&divide;</button>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-6">
-                <button class="butn single orange modifier shift" href="#" role="button" id="tangent">tan</button>
-                <button class="butn single orange modifier shift" href="#" role="button" id="natlog">ln</button>
-                <button class="butn single orange modifier shift" href="#" role="button" value="log">log<sub>10</sub></button>
-                <button class="butn single green number" href="#" role="button" value="7">7</button>
-                <button class="butn single green number" href="#" role="button" value="8">8</button>
-                <button class="butn single green number" href="#" role="button" value="9">9</button>
-                <button class="butn single orange operand" href="#" role="button" value="times">&times;</button>
+            <div class="col-md-8">
+                <button class="btn butn single modifier shift" href="#" role="button" id="tangent">tan</button>
+                <button class="btn butn single modifier shift" href="#" role="button" id="natlog">ln</button>
+                <button class="btn butn single modifier shift" href="#" role="button" value="log">log<sub>10</sub></button>
+                <button class="btn butn single number" href="#" role="button" value="7">7</button>
+                <button class="btn butn single number" href="#" role="button" value="8">8</button>
+                <button class="btn butn single number" href="#" role="button" value="9">9</button>
+                <button class="btn butn single operand" href="#" role="button" value="times">&times;</button>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-6">
-                <button class="butn single orange modifier shift" href="#" role="button" id="cosine">cos</button>
-                <button class="butn single orange modifier" href="#" role="button" id="factorial">x!</button>
-                <button class="butn single orange modifier" href="#" role="button" value="inverse">1/x</button>
-                <button class="butn single green number" href="#" role="button" value="4">4</button>
-                <button class="butn single green number" href="#" role="button" value="5">5</button>
-                <button class="butn single green number" href="#" role="button" value="6">6</button>
-                <button class="butn single orange operand" href="#" role="button" value="minus" >&minus;</button>
+            <div class="col-md-8">
+                <button class="btn butn single modifier shift" href="#" role="button" id="cosine">cos</button>
+                <button class="btn butn single modifier" href="#" role="button" id="factorial">x!</button>
+                <button class="btn butn single modifier" href="#" role="button" value="inverse">1/x</button>
+                <button class="btn butn single number" href="#" role="button" value="4">4</button>
+                <button class="btn butn single number" href="#" role="button" value="5">5</button>
+                <button class="btn butn single number" href="#" role="button" value="6">6</button>
+                <button class="btn butn single operand" href="#" role="button" value="minus" >&minus;</button>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-6">
-                <button class="butn single orange modifier" href="#" role="button" id="sin">sin</button>
-                <button class="butn single orange modifier shift" href="#" role="button" id="percentage">
-                    <span  class="shift-text">y<sup>x</sup></span>
+            <div class="col-md-8">
+                <button class="btn butn single modifier" href="#" role="button" id="sin">sin</button>
+                <button class="btn butn single modifier shift" href="#" role="button" id="percentage">
+                    <span>y<sup>x</sup></span>
                     <span class="shift-text-small">x<sup>2</sup></span>
                 </button>
-                <button class="butn single orange operand shift" href="#" role="button" value="root">
-                    <span  class="shift-text"><sup>x</sup>&#x0221A;<span style="text-decoration: overline">y</span></span>
+                <button class="btn butn single operand shift" href="#" role="button" value="root">
+                    <span><sup>x</sup>&#x0221A;<span style="text-decoration: overline">y</span></span>
                     <span class="shift-text-small">&#x0221A;<span style="text-decoration: overline">x</span></span>
                 </button>
-                <button class="butn single green number" href="#" role="button" value="1">1</button>
-                <button class="butn single green number" href="#" role="button" value="2">2</button>
-                <button class="butn single green number" href="#" role="button" value="3">3</button>
-                <button class="butn single orange operand" href="#" role="button" value="plus">+</button>
+                <button class="btn butn single number" href="#" role="button" value="1">1</button>
+                <button class="btn butn single number" href="#" role="button" value="2">2</button>
+                <button class="btn butn single number" href="#" role="button" value="3">3</button>
+                <button class="btn butn single operand" href="#" role="button" value="plus">+</button>
 
             </div>
         </div>
         <div class="row">
-            <div class="col-md-6">
-                <button class="butn single orange number" value="PI">π</button>
-                <button class="butn double blue number" id="shift" value="0">SHIFT</button>
-                <button class="butn single green number" value="0">0</button>
-                <button class="butn single green number" id="decimal" value=".">.</button>
-                <button class="butn double blue" id="enter">ENTER</button>
+            <div class="col-md-8">
+                <button class="btn butn single number" value="PI">π</button>
+                <button class="btn butn single blue number" id="shift"></button>
+                <button class="btn butn single orange number" id="shift"></button>
+                <button class="btn butn single number" value="0">0</button>
+                <button class="btn butn single number" id="decimal" value=".">.</button>
+                <button class="btn butn double blue" id="enter">ENTER</button>
 
             </div>
         </div>

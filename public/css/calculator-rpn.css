@@ -5,6 +5,7 @@ body {
 .butn {
     height: 50px;
     padding: 5px;
+    margin: 10px;
     text-align: center;
     font-size: 2em;
     color: white;
@@ -18,6 +19,8 @@ body {
 
 .double{
     width:150px;
+    margin-right: 20px;
+    margin-left: 20px;
 }
 
 .shift-text {
@@ -34,7 +37,7 @@ body {
     padding: 0px;
     color: #457B9D;
     position: absolute;
-    top: 1px;
+    top: -20px;
     right:1px;
 }
 
@@ -88,7 +91,7 @@ body {
 
 
 .input-large {
-    width: 515px;
+    width: 85%;
 }
 
 .input-small {
