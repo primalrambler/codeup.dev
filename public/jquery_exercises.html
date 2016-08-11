@@ -34,12 +34,28 @@
     
     <script>
         'use strict';
-        $('li').css('font-size','20px');
-        $('h1,p,li').css('background-color','yellow');
+        function highlight(){
+            $(this).css('background-color','yellow');
+        }
 
-        var contents = $('h1').html();
-        alert(contents)
-    </script>
+        function upsize () {  //sets ALL p tags bigger at once
+            $('p').css('font-size','18px');
+        }
+
+        function comingAtYa (){
+            $(this).css('color','#F00');
+        }
+
+        function seeYa (){
+            $(this).css('color','#000');
+        }
+
+        $('h1').click(highlight);
+
+        $('p').dblclick(upsize);
+        $('li').hover(comingAtYa,seeYa);
+
+    </script> 
 
 </body>
 </html>
