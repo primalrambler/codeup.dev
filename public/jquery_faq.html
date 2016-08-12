@@ -67,10 +67,33 @@
 			<dt>I have a body to dump, but it's February. Can I still dump it?</dt>
 			<dd class="invisi">Yes, though not all roads are open to cars. You can drive into the park through the North Entrance year-round. The winter season of services, tours, activities, and ranger programs typically spans from mid-December to mid-March.</dd><p></p>
 		</dl>
-	
 
+		<hr class="horizontal">
+		<h2>Next exercise</h2><p></p>
+		<button class="btn pushme" id="show-list">Toggle List Display</button><p></p>
 
-
+		
+		<h3>Yellowstone</h3>
+		<ul>
+			<li>There aren't any actual yellow stones</li>
+			<li>Named after popular TV show park Jellystone</li>
+			<li>Yogi Berra lives here</li>	
+			<li>Don't believe the rangers when they tell it you stinks because of the sulphur springs. They farted.</li>
+		</ul>
+		<h3>Gettysburg</h3>
+		<ul>
+			<li>Lots and lots of people died here</li>
+			<li>There's an address</li>
+			<li>North fought on the south side and the South fought on the north side.</li>	
+			<li>Originally called Getty's burgers</li>
+		</ul>
+		<h3>Mesa Verde</h3>
+		<ul>
+			<li>The cliff dwellings were built to hide the indians from the aliens</li>
+			<li>Paul IS the walrus. John may be.</li>
+			<li>They had cable TV in every room</li>	
+			<li>The kiva is an awesome spot to nap</li>
+		</ul>
 
 
 
@@ -82,11 +105,28 @@
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
 	
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+	
 	<script>
 		$('#show-answers').click(function(event) {
                 $('dd').toggleClass('invisi');
-                // $('#show-answers').text('Hide Answers');
             });
 
 	</script>
+	<script>
+		$('ul').each(function(){
+			$(this).children().first().css('font-weight','bold');
+			});
+
+		$('li').click(function(){
+			$(this).parent().addClass('invisi');
+			});
+
+		$('#show-list').click(function(event) {
+                $('ul').toggleClass('invisi');
+            });
+
+	</script>
+	
+	</script>
+
 </div>
