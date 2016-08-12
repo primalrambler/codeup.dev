@@ -108,11 +108,13 @@
 	<script> //exercise 3
 	$('li').click(function(){
 			$(this).parent().hide();
-			});
+		});
+
 	$('dt').click(function(){
-		$('dd').toggle();
-	})
-	
+		$(this).next().toggle();
+	});
+
+
 	</script>
 
 </div>
