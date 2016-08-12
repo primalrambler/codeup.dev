@@ -16,11 +16,9 @@
 		  height: auto;
 		}
 
-		.invisi {
+		/*.invisi {
 			display:none;
-		}
-
-
+		}*/
 	</style>
 </head>
 <body>
@@ -106,26 +104,14 @@
 	
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 	
-	<script>
-		$('#show-answers').click(function(event) {
-                $('dd').toggleClass('invisi');
-            });
 
-	</script>
-	<script>
-		$('ul').each(function(){
-			$(this).children().first().css('font-weight','bold');
+	<script> //exercise 3
+	$('li').click(function(){
+			$(this).parent().hide();
 			});
-
-		$('li').click(function(){
-			$(this).parent().addClass('invisi');
-			});
-
-		$('#show-list').click(function(event) {
-                $('ul').toggleClass('invisi');
-            });
-
-	</script>
+	$('dt').click(function(){
+		$('dd').toggle();
+	})
 	
 	</script>
 
