@@ -20,7 +20,7 @@
 
 	<h1 class="heading text-center">ENTER THE CODE</h1>
 
-	<button id="reset-code">TRY AGAIN</button>
+	<!-- <button id="reset-code">TRY AGAIN</button> -->
 
 	<div class="container showIt">
 		<div class = "row">
@@ -43,55 +43,63 @@
         // var entryTimeMax = 5000;
         // var resetTimer;
         var attemptedCode = [];
+        var startChecking = false;
 
         function resetCode(){
+            //reset global variables
         	attemptedCode = [];
-        	console.log(attemptedCode);
-        	$('.showIt').hide();
-			$('body').css('background-color','white');
-        	alert('try again');
+
+            //for debugging
+            console.log('code has been reset');
+
+            //reset Easter Egg
+            $('.showIt').hide();
+            $('body').css('background-color','white');
         }
 
 
         function checkCode (attemptedCode, konamiCode){
-    		if (attemptedCode.length !== konamiCode.length) return false;
-    		
-    		for (var i = 0, len = attemptedCode.length; i < len; i++){
-        		if (attemptedCode[i] !== konamiCode[i]){
-            	return false;
-		        }
-		    }
-		    return true; 
-		}
+                if (attemptedCode.length > konamiCode.length){
+                    resetCode();
+                }
+                if (attemptedCode.length !== konamiCode.length) return false;
 
-		function easterEgg (){
-			$('.showIt').show();
-			$('body').css('background-color','black');
-			$('#sound')[0].play();
-		}
+                for (var i = 0, len = attemptedCode.length; i < len; i++){
+                    if (attemptedCode[i] !== konamiCode[i]){
+                    return false;
+                    }
+                }
+                return true; 
+            }
+
+        function easterEgg (){
+            console.log('easter egg');
+            $('.showIt').show();
+            $('body').css('background-color','black');
+            $('#sound')[0].play();
+        }
 
         function logAttempt (event) {
-        	attemptedCode.push(event.keyCode);
-        	console.log(attemptedCode);
-        	console.log(checkCode(attemptedCode,konamiCode));
-        }
+            attemptedCode.push(event.keyCode);
+            console.log(attemptedCode);
+            console.log(checkCode(attemptedCode,konamiCode));
+
+            
+            }
 
         function konamiCodeSurprise (){
-        	logAttempt(event);
-        	if (checkCode(attemptedCode, konamiCode)){
-        		easterEgg();
-        	}
-        }
-
-        // $(document).keyup(function(event){
-        //     console.log(event.keyCode);
-        // });
-
+            if (event.which == 38 || attemptedCode[0] == 38){
+                logAttempt(event);
+                if (checkCode(attemptedCode, konamiCode)){
+                    easterEgg();
+                    }
+                }
+            }
 
         $(document).keyup(konamiCodeSurprise);
         // $(document).keyup(timedReset);
 
-        $('#reset-code').click(resetCode);
+        // $('#reset-code').click(resetCode);
 
 
     </script>
