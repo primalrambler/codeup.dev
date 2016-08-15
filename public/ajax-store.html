@@ -32,7 +32,7 @@
     "use strict";
     // TODO: Create an ajax GET request for /data/inventory.json
 
-    function addRowOfInventory (inventory){
+    function tableDisplay (inventory){
         inventory.forEach(function(item){
             var contents = '';
             contents += "<tr><td>" + item.title + "</td>";
@@ -45,7 +45,7 @@
 
     //get inventory data and pass it to table display function
     $.get("/data/inventory.json").done(function(data) {
-        addRowOfInventory(data);
+        tableDisplay(data);
     });
 
     function refreshInventory (){
@@ -54,7 +54,7 @@
 
         //repopulate table
         $.get("/data/inventory.json").done(function(data) {
-        addRowOfInventory(data);
+        tableDisplay(data);
     });
     }
 
