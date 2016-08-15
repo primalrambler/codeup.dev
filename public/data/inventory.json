@@ -30,5 +30,21 @@
             "tool"
         ],
         "price": 10
+    }, {
+        "title": "Safety Glasses",
+        "quantity": 23,
+        "categories": [
+            "outdoor",
+            "safety"
+            ],
+        "price": 5
+    }, {
+        "title": "Nails",
+        "quantity": 999,
+        "categories": [
+            "hardware"
+            ],
+        "price": 0.10
     }
+
 ]
