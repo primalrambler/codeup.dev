@@ -5,21 +5,43 @@ $(document).ready(function() {
 //openweathermap.org
 const myAPIKey = 'b112d425689409f17145cc7ecad0f6bd';
 
-var lat = 29.426791;
-var lng = -98.489602;
 
-// Render the map
-var mapOptions = {
-        // Set the zoom level
-        zoom: 15,
-        // This sets the center of the map at our location
-        center: {
-            lat:  lat,
-            lng: lng
-        }
-    };
+var myLatLng = {lat: 29.426791, lng:-98.489602};
+var lat = myLatLng.lat;
+var lng = myLatLng.lng;
+var map;
 
-var map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
+function initialize() {
+	var mapOptions = {
+	zoom: 8,
+	center: myLatLng
+	};
+
+	map = new google.maps.Map(document.getElementById('map'),
+	mapOptions);
+
+	var marker = new google.maps.Marker({
+	// The below line is equivalent to writing:
+	// position: new google.maps.LatLng(-34.397, 150.644)
+	position: myLatLng,
+	map: map
+	});
+
+	// You can use a LatLng literal in place of a google.maps.LatLng object when
+	// creating the Marker object. Once the Marker object is instantiated, its
+	// position will be available as a google.maps.LatLng object. In this case,
+	// we retrieve the marker's position using the
+	// google.maps.LatLng.getPosition() method.
+	var infowindow = new google.maps.InfoWindow({
+	content: '<p>Marker Location:' + marker.getPosition() + '</p>'
+	});
+
+	google.maps.event.addListener(marker, 'click', function() {
+	infowindow.open(map, marker);
+	});
+	}
+
+google.maps.event.addDomListener(window, 'load', initialize);
 
 
 //display the weather information into daily forecast box
@@ -45,7 +67,7 @@ function weatherDisplay (data){
             contents += '</div>';
             $("#insertForecast").append(contents);
         });
-    }
+}
 
 //get weather data
 function getWeather (){
@@ -55,7 +77,7 @@ function getWeather (){
 		lat:    lat,	
 		lon: 	lng,
 		cnt: 	"3", 
-		units: 	"imperial"
+		units: "imperial"
 	}).done(function(data){
 		console.log(data);
 		weatherDisplay(data);
@@ -89,22 +111,23 @@ function clearData (){
 	$("#insertLocale").fadeOut();
 	$("#insertLocale").html('');
 	$("#insertLocale").fadeIn();
-
 }
 
-function redisplayMap (){
+function displayMap (){
 	map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
-	console.log(mapOptions);
+	// console.log(mapOptions);
 }
 
-    $('#searchButton').click(function(){
-    	getLatLong();
-    	clearData();
-    	getWeather();
-    	redisplayMap();
-    });
+function dropPin (event){
+    myLatLng = event.latLng();
+    console.log(myLatLng);
+}
 
-//load San Antonio weather and map on page load event 
+// google.maps.event.addListener(marker, 'dragend', function (event) {
+// 	dropPin(event);
+// });
+
+//load San Antonio weather
 getWeather();
 
 
