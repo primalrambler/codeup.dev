@@ -10,7 +10,9 @@ const myAPIKey = 'b112d425689409f17145cc7ecad0f6bd';
 
 function weatherDisplay (data){
 	var forecasts = data.list;
-	console.log(forecasts);
+	var cityName = '<h2>' + data.city.name + '</h2>'
+	$("#insertLocale").append(cityName);
+
     	forecasts.forEach(function(forecast){
         	console.log (forecast);
         	var windSpeed = Math.round(forecast.speed * 2.23694); //converts mps to mph

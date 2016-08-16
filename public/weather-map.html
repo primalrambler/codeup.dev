@@ -15,7 +15,9 @@
 
 	.weather {
 		color: black;
-	}
+		display: flex;
+		justify-content: space-between;
+	}	
 
 	.weather-box {
 		background-color: #E2EFDE;
@@ -24,6 +26,7 @@
 		float: left;
 		border: 1px black solid;
 		position: relative;
+		margin: auto;
 	}
 	.temperature {
 		font-size: 2em;
@@ -49,21 +52,26 @@
 		display: block;
 		margin: auto;
 	}
-
-
-
 	</style>
 
-
-
 </head>
+
+
+//Main Content
+
 <body class="layout">
 	<div class="container">
-		<div class="col-sm-8 col-sm-offset-2">
-			<h1 class="text-center">Weather Map</h1>
+		<div class="row">
+			<div class="col-sm-8 col-sm-offset-2">
+				<h1 class="text-center">Weather Map</h1>
+			</div>
 		</div>
-		<div class="weather col-sm-8 col-sm-offset-2" id="insertForecast"></div>
-
+		<div class="row">
+			<div class="col-sm-8 col-sm-offset-2" id="insertLocale"></div>
+		</div>
+		<div="row">
+			<div class="weather col-sm-8 col-sm-offset-2" id="insertForecast"></div>
+		</div>
 	</div>
 <body>
 
