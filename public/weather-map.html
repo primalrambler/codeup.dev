@@ -52,12 +52,31 @@
 		display: block;
 		margin: auto;
 	}
+
+	#map-canvas {
+            width: 1000px;
+            height: 600px;
+            border: 1px black solid;
+            padding-top: 50px;
+            /*display: block;*/
+            margin: auto;
+	}
+	.map-area {
+		padding: 50px;
+	}
+
+	#inputArea {
+		padding-top: 20px;
+		padding-bottom: 20px;
+		color: black;
+	}	
+
+
 	</style>
 
 </head>
 
-
-//Main Content
+<!-- Main Content -->
 
 <body class="layout">
 	<div class="container">
@@ -69,10 +88,29 @@
 		<div class="row">
 			<div class="col-sm-8 col-sm-offset-2" id="insertLocale"></div>
 		</div>
-		<div="row">
+		<div class="row">
+			<div class="col-sm-8 col-sm-offset-2" id="inputArea">
+				<input type="text" id="latitude" name="latitude" placeholder="Latitude">
+				<input type="text" id="longitude" name="longitude" placeholder="Longitude">
+				<button id="searchButton" class="btn" type="submit"><span class="glyphicon glyphicon-search" aria-hidden="true"></span> Weather at your Lat/Long</button>
+			</div>
+		</div>
+		<div class="row">
 			<div class="weather col-sm-8 col-sm-offset-2" id="insertForecast"></div>
 		</div>
 	</div>
+
+<!-- div to hold map -->
+	<div class="container">
+		<div class="row">
+			<div class="map-area col-sm-8">
+			    <div id="map-canvas"></div>
+			</div>
+		</div>
+	</div>
+
+
+
 <body>
 
 	<!-- Bootstrap core JavaScript
@@ -82,6 +120,7 @@
 	
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 
-	<script src="/js/weather-map.js"></script>
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDWLwvpQpvV0aHY3E4oAnuugMwtt7A7Ckc"></script>
 
+	<script src="/js/weather-map.js"></script>
 </html>
