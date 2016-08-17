@@ -46,7 +46,40 @@ map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 		console.log(tempLat);
 		console.log(tempLng);
 	});
-	// }	
+	// }
+
+	function dateGrabber (data){
+		var unixDate = new Date(data.dt * 1000);
+		console.log(unixDate);
+		var month = unixDate.getMonth();
+		var date = unixDate.getDate();
+		var weekday = unixDate.getDay();
+		var weekdayName;
+		switch (weekday) {
+			case 0 :
+				weekday = 'Sun';
+				break;
+			case 1 :
+				weekday = 'Mon';
+				break;
+			case 2 :
+				weekday = 'Tue';
+				break;
+			case 3 :
+				weekday = 'Wed';
+				break;
+			case 4 :
+				weekday = 'Thu';
+				break;
+			case 5 :
+				weekday = 'Fri';
+				break;
+			case 6 :
+				weekday = 'Sat';
+				break;
+		};
+		return weekday + " " + month + "/" + date;
+	}
 
 
 
@@ -57,10 +90,12 @@ function weatherDisplay (data){  //display the weather information into daily fo
 	$("#insertLocale").append(cityName);
 
     	forecasts.forEach(function(forecast){
+			var forecastDate = dateGrabber(forecast);
         	console.log (forecast);
         	var windSpeed = Math.round(forecast.speed * 2.23694); //converts mps to mph
             var contents = '';
             contents += '<div class="weather-box">';
+            contents += '<p class="date">' + forecastDate + '</p>';
             contents += '<p class="temperature">' + Math.round(forecast.temp.max) + 
             			"&#176 / " + Math.round(forecast.temp.min) + '&#176</p>';
             contents += '<img src="http://openweathermap.org/img/w/' + forecast.weather[0].icon + '.png">'
@@ -75,8 +110,10 @@ function weatherDisplay (data){  //display the weather information into daily fo
 }
 
 
+
+
 //get weather data
-function getWeather (){
+function getMultiDayForecasts (){
 	$.get("http://api.openweathermap.org/data/2.5/forecast/daily", {
 		APPID: 	myAPIKey,
 		// q: 		"San Antonio, TX", //search by city
@@ -108,7 +145,7 @@ function clearData (){
 google.maps.event.addListener(marker, 'dragend', function (event) {
     lat = event.latLng.lat();
     lng = event.latLng.lng();
-	getWeather();
+	getMultiDayForecasts();
 	clearData();
 	map.setCenter(marker.position);
 	marker.setMap(map);
@@ -116,7 +153,7 @@ google.maps.event.addListener(marker, 'dragend', function (event) {
 
 
 //load San Antonio weather
-getWeather();
+getMultiDayForecasts();
 
 
 });  //close wrapper
