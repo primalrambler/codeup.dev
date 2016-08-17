@@ -5,33 +5,31 @@ $(document).ready(function() {
 //openweathermap.org
 const myAPIKey = 'b112d425689409f17145cc7ecad0f6bd';
 
+/*how to make this better...
+	• use geolocation to set initial location for map and weather based on user's location
+	• weather background changes with time of day, light to dark through the day
+	• add an search location input
+*/
 
-var myLatLng = {lat: 29.426791, lng:-98.489602};
-var lat = myLatLng.lat;
+var myLatLng = {lat: 29.426791, lng:-98.489602};  //initial position centered on codeup
+var lat = myLatLng.lat; //
 var lng = myLatLng.lng;
 var map;
 
-function initialize() {
-	var mapOptions = {
+var mapOptions = {
 	zoom: 8,
 	center: myLatLng
 	};
 
-	map = new google.maps.Map(document.getElementById('map'),
-	mapOptions);
+map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 
 	var marker = new google.maps.Marker({
-	// The below line is equivalent to writing:
-	// position: new google.maps.LatLng(-34.397, 150.644)
 	position: myLatLng,
-	map: map
+	map: map,
+	draggable: true
 	});
 
-	// You can use a LatLng literal in place of a google.maps.LatLng object when
-	// creating the Marker object. Once the Marker object is instantiated, its
-	// position will be available as a google.maps.LatLng object. In this case,
-	// we retrieve the marker's position using the
-	// google.maps.LatLng.getPosition() method.
+	
 	var infowindow = new google.maps.InfoWindow({
 	content: '<p>Marker Location:' + marker.getPosition() + '</p>'
 	});
@@ -39,20 +37,27 @@ function initialize() {
 	google.maps.event.addListener(marker, 'click', function() {
 	infowindow.open(map, marker);
 	});
-	}
 
-google.maps.event.addDomListener(window, 'load', initialize);
+	google.maps.event.addListener(marker, 'dragend', function () {
+		myLatLng = marker.getPosition();
+		var tempLat = marker.getPosition().lat;
+		var tempLng = marker.getPosition().lng;
+		console.log(marker.getPosition());
+		console.log(tempLat);
+		console.log(tempLng);
+	});
+	// }	
 
 
-//display the weather information into daily forecast box
 
-function weatherDisplay (data){
+function weatherDisplay (data){  //display the weather information into daily forecast box
+
 	var forecasts = data.list;
 	var cityName = '<h2>' + data.city.name + '</h2>'
 	$("#insertLocale").append(cityName);
 
     	forecasts.forEach(function(forecast){
-        	// console.log (forecast);
+        	console.log (forecast);
         	var windSpeed = Math.round(forecast.speed * 2.23694); //converts mps to mph
             var contents = '';
             contents += '<div class="weather-box">';
@@ -69,6 +74,7 @@ function weatherDisplay (data){
         });
 }
 
+
 //get weather data
 function getWeather (){
 	$.get("http://api.openweathermap.org/data/2.5/forecast/daily", {
@@ -79,7 +85,7 @@ function getWeather (){
 		cnt: 	"3", 
 		units: "imperial"
 	}).done(function(data){
-		console.log(data);
+		// console.log(data);
 		weatherDisplay(data);
 	}).fail(function(xhr, err, msg){
 		alert ('something went wrong');
@@ -87,21 +93,6 @@ function getWeather (){
 		// console.log(err);
 		// console.log(msg);
 	});
-}
-
-
-function getLatLong (){
-    lat = parseFloat($('#latitude').val());
-    lng = parseFloat($('#longitude').val());
-    mapOptions = {
-        // Set the zoom level
-        zoom: 15,
-        // This sets the center of the map at our location
-        center: {
-            lat:  lat,
-            lng: lng
-        }
-    };
 }
 
 function clearData (){
@@ -113,19 +104,16 @@ function clearData (){
 	$("#insertLocale").fadeIn();
 }
 
-function displayMap (){
-	map = new google.maps.Map(document.getElementById("map-canvas"), mapOptions);
-	// console.log(mapOptions);
-}
+//add listener for new map/weather location based on marker drag
+google.maps.event.addListener(marker, 'dragend', function (event) {
+    lat = event.latLng.lat();
+    lng = event.latLng.lng();
+	getWeather();
+	clearData();
+	map.setCenter(marker.position);
+	marker.setMap(map);
+});  //close listener
 
-function dropPin (event){
-    myLatLng = event.latLng();
-    console.log(myLatLng);
-}
-
-// google.maps.event.addListener(marker, 'dragend', function (event) {
-// 	dropPin(event);
-// });
 
 //load San Antonio weather
 getWeather();
