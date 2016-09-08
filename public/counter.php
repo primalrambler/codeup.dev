@@ -39,7 +39,8 @@ extract(pageController());
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-12 text-center button">
-				<a href="/counter.php?value=<?= $counter +1 ?>" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></a>
+				<a href="/counter.php?value=<?= $counter +1 ?>" class="btn btn-primary btn-lg">
+					<span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></span></a>
 			</div>
 		</div>
 		<div class="row">
@@ -51,7 +52,8 @@ extract(pageController());
 		</div>
 		<div class="row">
 			<div class="col-xs-12 text-center button">
-				<a href="/counter.php?value=<?= $counter - 1 ?>" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></a>
+				<a href="/counter.php?value=<?= $counter - 1 ?>" class="btn btn-primary btn-lg">
+					<span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></span></a>
 			</div>
 		</div>		
 	</div>
