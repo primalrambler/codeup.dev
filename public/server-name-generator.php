@@ -25,12 +25,21 @@ function getRandomWord ($array)
 }
 
 
+function pageController($adjectiveArray,$nounArray)
+{
+	$adjectiveArray = cleanWordArray($adjectiveArray);
+	$nounArray = cleanWordArray($nounArray);
+	$randomAdjective = getRandomWord($adjectiveArray,1);
+	$randomNoun = getRandomWord($nounArray,1);
+	$serverName = $randomAdjective." ".$randomNoun;
+	
+	return [
+	'serverName' => $serverName,
+	];
+}
 
-$adjectiveArray = cleanWordArray($adjectiveArray);
-$nounArray = cleanWordArray($nounArray);
-$randomAdjective = getRandomWord($adjectiveArray,1);
-$randomNoun = getRandomWord($nounArray,1);
-$serverName = $randomAdjective." ".$randomNoun;
+extract(pageController($adjectiveArray,$nounArray));
+
 
 
 //view
@@ -46,9 +55,22 @@ $serverName = $randomAdjective." ".$randomNoun;
 	<meta charset="utf-8">
 </head>
 <body>
-	<h1>Your server name is...</h1>
+	<div class="container">
+		<div class="row">
+			<div class="col-md-6">
+				<h1>Your server name is...</h1>
+			</div>
+			<div class="col-md-6 pull-right btn">
+				<button id="regen">REGENERATE</button>
+			</div>
+		</div>
+	</div>
 
-	<h2><?= $serverName ?></h2>
+	<div class="jumbotron">
+
+	<h1 class="text-center"><?= $serverName ?></h1>
+
+	</div>
 
 	<!-- Bootstrap core JavaScript
 	    ================================================== -->
@@ -57,6 +79,13 @@ $serverName = $randomAdjective." ".$randomNoun;
 	
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" 
 	integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
+	<script type="text/javascript">
+
+		$('#regen').click(function(){
+			location.reload();
+		});
+	</script>
 
 </body>
 </html>
