@@ -1,19 +1,14 @@
 <?php
 
-//set counter to zero
-$counter = 0;
-
-$counter = (isset($_GET['value']))? intval($_GET['value']) : 0;
-
-function pageController ($counter)
+function pageController ()
 {
+	$counter = (isset($_GET['value']))? intval($_GET['value']) : 0;
 	return [
 	'counter' => $counter,
 	];
 }
 
-
-extract(pageController($counter));
+extract(pageController());
 
 ?>
 
