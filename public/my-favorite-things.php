@@ -3,9 +3,19 @@
 //model
 
 $myFavoriteThings = ['\'93 Renegade','Kindle','Vietnamese spring rolls','Math','Monty Python',
-					'TV', 'Firefly','Walking','Lifting','Naps', ]
+					'TV', 'Firefly','Walking','Lifting','Naps', ];
 
-//control - none
+//control
+
+function pageController($array)
+{
+	return [
+	'myFavoriteThings' => $array,
+	];
+}
+
+extract(pageController($myFavoriteThings));
+
 //view
 ?>
 <!DOCTYPE html>
