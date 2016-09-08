@@ -1,7 +1,35 @@
 <?php
-$counter = 0;
-$message = "Ping da Pong"
 
+$counter = 0;
+
+
+function pageController ()
+{
+	$counter = (isset($_GET['value'])) ? intval($_GET['value']) : 0;
+	$attempt = (isset($_GET['type'])) ? $_GET['type'] : 'not set';
+
+	if ($attempt == 'miss') {
+		$message = 'GAME OVER';
+		$subMessage = 'Click the HIT button to start again.';
+
+	} elseif ($attempt == 'hit'){
+		$message = $counter;
+		$subMessage = 'Number of Consecutive Hits';
+
+	} else {
+		$message = "Ping da Pong";
+		$subMessage = "because you've got nothing else to do";
+	}
+
+	return [
+	'message' => $message,
+	'subMessage' => $subMessage,
+	'counter' => $counter,
+	];
+}
+
+
+extract(pageController());
 
 ?>
 
@@ -32,16 +60,16 @@ $message = "Ping da Pong"
 		<div class="row">
 			<div class="col-xs-3 button text-left">
 				<h1>PING</h1>
-				<a href="/pong.php?value=<?= $counter +1 ?>?type=hit" class="btn btn-primary btn-lg">HIT 
+				<a href="/pong.php?value=<?= $counter +1 ?>&type=hit" class="btn btn-primary btn-lg">HIT 
 					<span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span></a>
 				<p></p>
-				<a href="/pong.php?value=0?type=miss" class="btn btn-primary btn-lg">MISS 
+				<a href="/pong.php?value=0&type=miss" class="btn btn-primary btn-lg">MISS 
 					<span class="glyphicon glyphicon-remove" aria-hidden="true"></span></a>
 			</div>
 			<div class="col-xs-6">
 				<div class="jumbotron text-center">
 					<h1><?= $message ?></h1>
-					<?php ($counter == 0)? "" : '<h2>Number of Consecutive Hits</h2>'; ?>
+					<h2><?= $subMessage ?></h2>
 				</div>
 			</div>
 		</div>
