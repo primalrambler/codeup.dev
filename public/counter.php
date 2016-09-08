@@ -1,9 +1,19 @@
 <?php
 
-$url = 'http://codeup.dev/counter.php';
+//set counter to zero
+$counter = 0;
+
+$counter = (isset($_GET['value']))? intval($_GET['value']) : 0;
+
+function pageController ($counter)
+{
+	return [
+	'counter' => $counter,
+	];
+}
 
 
-
+extract(pageController($counter));
 
 ?>
 
@@ -25,7 +35,6 @@ $url = 'http://codeup.dev/counter.php';
 		padding-bottom: 30px;
 		margin: auto;
 	}
-
 	</style>
 
 
@@ -35,19 +44,19 @@ $url = 'http://codeup.dev/counter.php';
 	<div class="container">
 		<div class="row">
 			<div class="col-xs-12 text-center button">
-				<a href="/counter.php?button=up" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></a>
+				<a href="/counter.php?value=<?= $counter +1 ?>" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-chevron-up" aria-hidden="true"></a>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-xs-4 col-xs-offset-4">
 				<div class="jumbotron text-center">
-					<h1>##</h1>
+					<h1><?= $counter ?></h1>
 				</div>
 			</div>
 		</div>
 		<div class="row">
 			<div class="col-xs-12 text-center button">
-				<a href="/counter.php?button=down" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></a>
+				<a href="/counter.php?value=<?= $counter - 1 ?>" class="btn btn-primary btn-lg"><span class="glyphicon glyphicon-chevron-down" aria-hidden="true"></a>
 			</div>
 		</div>		
 	</div>
