@@ -1,4 +1,22 @@
+<?php
 
+session_start();
+
+
+function pageController()
+{
+	$username = 'User';
+
+	if ($_SESSION['logged_in_user']){
+	    $username = $_SESSION['username'];
+	}
+	return [
+	'username' => $username,
+	];
+}
+
+extract(pageController());
+?>
 
 <!DOCTYPE html>
 <html>
@@ -13,7 +31,12 @@
 	<div class="container">
 		<div class="jumbotron text-center">
 			<h1>AUTHORIZED</h1>
+			<h2>Welcome <?= $username ?><h2>
 		</div>
+		<div>
+			<a href="/logout.php" class="btn btn-primary btn-lg btn-block login-button">Log Out</a>
+		</div>
+
 	</div>
 
 
