@@ -8,8 +8,8 @@ function pageController()
     $validPassword = 'password';
     $class = 'hidden';
 
-    $username = isset($_POST['username']) ? $_POST['username'] : '';
-    $password = isset($_POST['password']) ? $_POST['password'] : '';
+    $username = isset($_POST['username']) ? htmlspecialchars(strip_tags($_POST['username'])) : '';
+    $password = isset($_POST['password']) ? htmlspecialchars(strip_tags($_POST['password'])) : '';
 
 
 
