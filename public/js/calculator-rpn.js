@@ -87,6 +87,19 @@ function displayUpdate() {
 	}
 }
 
+function clearAll (e) {
+	//reset all global variables
+	numberArray = [];
+	activeIndex = 0;
+	flagDecimal = 0;
+	flagPercent = 0;
+	flagEnter = 0;
+	flagOperand = 0;
+	displayUpdate();
+}
+
+// One number math operations ----------------------------------------------//
+
 function plusMinus (e){
 	var inputToModify = parseFloat(numberArray[0]);
 	inputToModify *= -1;
@@ -114,16 +127,6 @@ function percentage (e) {
 	displayUpdate();
 }
 
-function clearAll (e) {
-	//reset all global variables
-	numberArray = [];
-	activeIndex = 0;
-	flagDecimal = 0;
-	flagPercent = 0;
-	flagEnter = 0;
-	flagOperand = 0;
-	displayUpdate();
-}
 
 function inverse (e) {
 	var inputToModify = parseFloat(numberArray[0]);
@@ -133,11 +136,17 @@ function inverse (e) {
 }
 
 
-function factorial(n) {
+function factorialMath(n) {
   if (n === 0) {
     return 1;
   }
   return n * factorial(n - 1);
+}
+
+function factorial (e){
+	var n = parseFloat(numberArray[0]);
+	numberArray[0] = factorialMath(n);
+	displayUpdate();
 }
 	
 
