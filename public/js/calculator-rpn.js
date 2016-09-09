@@ -38,7 +38,9 @@ var percentageButton = document.getElementById("percentage");
 percentageButton.addEventListener("click", percentage);
 
 var inverseButton = document.getElementById("inverse");
-percentageButton.addEventListener("click", inverse);
+inverseButton.addEventListener("click", inverse);
+
+
 
 
 //Display Functions ----------------------------------------------//
@@ -100,6 +102,7 @@ function percentage (e) {
 
 	if (flagPercent == 0){
 		inputToModify = parseFloat(inputToModify) / 100;
+		numberArray[0]=result;
 		console.log(numberArray[0])
 		flagPercent = 1;
 	} else {
@@ -124,12 +127,18 @@ function clearAll (e) {
 
 function inverse (e) {
 	var inputToModify = parseFloat(numberArray[0]);
-	var result = 1 / inputToModify.toString();
+	var result = 1 / inputToModify;
 	numberArray[0] = result;
 	displayUpdate();
 }
 
 
+function factorial(n) {
+  if (n === 0) {
+    return 1;
+  }
+  return n * factorial(n - 1);
+}
 	
 
 // // Mathematical Functions -------------------------------------//
@@ -152,6 +161,16 @@ function division(firstNum,secondNum){
 	}
 	return parseFloat(firstNum) / parseFloat(secondNum);
 }
+function power(firstNum,secondNum){
+	//raise second number to the first entered number
+	return Math.pow(secondNum,firstNum);
+}
+
+function root(firstNum,secondNum) {
+	return Math.pow(firstNum, 1/secondNum);
+}
+
+
 	
 function doMath (){
 	if (numberArray.length > 1){
@@ -176,6 +195,12 @@ function doMath (){
 				break;
 			case "divide":
 				result = division(firstNum,secondNum);
+				break;
+			case "power":
+				result = power(firstNum,secondNum);
+				break;
+			case "root":
+				result = root(firstNum,secondNum);
 				break;
 		}
 		numberArray.splice(0,2,result);
