@@ -2,15 +2,34 @@
 //debug
 // var_dump($_POST);
 
-$validUser = 'guest';
-$validPassword = 'password';
+function pageController()
+{
+    $validUser = 'guest';
+    $validPassword = 'password';
+    $class = 'hidden';
 
-if (! empty($_POST)){
-    if ($_POST['username'] == $validUser && $_POST['password'] == 'password') {
-        header ('Location: /authorized.php');
-        die;
-    } 
+    $username = isset($_POST['username']) ? $_POST['username'] : '';
+    $password = isset($_POST['password']) ? $_POST['password'] : '';
+
+
+
+    if (! empty($_POST)){
+        if ($username === $validUser && $password === $validPassword) {
+            header ('Location: /authorized.php');
+            die;
+        } 
+        elseif (! empty($_POST) && ($username !== $validUser || $password !== $validPassword)) {
+            $class = 'show';
+        }
+    }
+    return [
+    'username' => $username,
+    'password' => $password,
+    'class' => $class,
+    ];
 }
+
+extract(pageController());
 
 ?>
 
@@ -35,6 +54,10 @@ if (! empty($_POST)){
 </head>
 
 <body>
+    <div class="alert alert-danger alert-dismissible <?= $class ?>" role="alert">
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong>Warning!</strong> Username or password are incorrect. Try again.
+    </div>
 
     <div class="container">
         <form class="form-horizontal" method="POST" action="/login.php">
