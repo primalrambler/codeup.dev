@@ -1,6 +1,7 @@
 <?php
-//debug
-// var_dump($_POST);
+
+session_start();
+
 
 function pageController()
 {
@@ -12,9 +13,16 @@ function pageController()
     $password = isset($_POST['password']) ? htmlspecialchars(strip_tags($_POST['password'])) : '';
 
 
+    if (!empty($_SESSION)){
+        if ($_SESSION['logged_in_user']){
+            header ('Location: /authorized.php');
+        }
+    }
 
-    if (! empty($_POST)){
+    if (! empty($_POST)) {
         if ($username === $validUser && $password === $validPassword) {
+            $_SESSION['logged_in_user'] = true;
+            $_SESSION['username'] = $username;
             header ('Location: /authorized.php');
             die;
         } 
