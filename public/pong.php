@@ -1,11 +1,11 @@
 <?php
 $counter = 0;
-
+require_once 'functions.php';
 
 function pageController ()
 {
-	$counter = (isset($_GET['value'])) ? intval($_GET['value']) : 0;
-	$attempt = (isset($_GET['type'])) ? $_GET['type'] : 'not set';
+	$counter = intval(inputGet('value'));
+	$attempt = inputGet('type');
 
 	if ($attempt == 'miss') {
 		$message = 'GAME OVER';

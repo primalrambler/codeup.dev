@@ -2,6 +2,8 @@
 
 session_start();
 
+require_once 'functions.php';
+
 
 function pageController()
 {
@@ -9,8 +11,8 @@ function pageController()
     $validPassword = 'password';
     $class = 'hidden';
 
-    $username = isset($_POST['username']) ? htmlspecialchars(strip_tags($_POST['username'])) : '';
-    $password = isset($_POST['password']) ? htmlspecialchars(strip_tags($_POST['password'])) : '';
+    $username = inputGet('username');
+    $password = inputGet('password');
 
 
     if (!empty($_SESSION)){
