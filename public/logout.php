@@ -20,6 +20,7 @@ function pageController()
 	    clearSession();
 	} else{
 		header('Location: /login.php');
+		die;
 	}
 
 	return [

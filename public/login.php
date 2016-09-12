@@ -16,6 +16,7 @@ function pageController()
     if (!empty($_SESSION)){
         if ($_SESSION['logged_in_user']){
             header ('Location: /authorized.php');
+            die;
         }
     }
 
