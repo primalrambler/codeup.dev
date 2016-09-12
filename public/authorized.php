@@ -5,13 +5,13 @@ session_start();
 
 function pageController()
 {
-	$username = 'User';
 
-	if ($_SESSION['logged_in_user']){
-	    $username = $_SESSION['username'];
-	}
+	if (! $_SESSION['logged_in_user']){
+		header('Location: /login.php');
+		die;
+	} 
 	return [
-	'username' => $username,
+	'username' => $_SESSION['username'],
 	];
 }
 
