@@ -1,6 +1,8 @@
 <?php
 require_once 'functions.php';
 
+session_start();
+
 function pageController() {
     $data = ['message' => '', 'title' => 'Login'];
     if (isUserAuthenticated()) {
@@ -20,12 +22,12 @@ extract(pageController());
 ?>
 <!DOCTYPE html>
 <html>
-    <?php include 'templates/header.php' ?>
+    <?php include 'header.php' ?>
     <body>
         <div class="container">
             <h1>Login</h1>
             <h2><?= $message ?></h2>
-            <form method="post">
+            <form method="POST">
                 <div class="form-group">
                     <label for="username">Username</label>
                     <input
