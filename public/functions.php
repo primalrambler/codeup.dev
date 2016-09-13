@@ -4,7 +4,7 @@
 function inputHas($key)
 {
 	//return true/false if it has the key
-	return (isset($_REQUEST[$key])) ? true : false;
+	return isset($_REQUEST[$key]);
 }
 
 function inputGet($key)
