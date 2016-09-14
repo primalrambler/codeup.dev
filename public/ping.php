@@ -1,14 +1,14 @@
 <?php
 
-require_once 'functions.php';
+require_once '../Input.php';
 
 $counter = 0;
 
 
 function pageController ()
 {
-	$counter = intval(inputGet('value'));
-	$attempt = inputGet('type');
+	$counter = intval(Input::get('value'));
+	$attempt = Input::get('type');
 
 	if ($attempt == 'miss') {
 		$message = 'GAME OVER';
