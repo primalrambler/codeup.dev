@@ -1,17 +1,18 @@
 <?php
 
 session_start();
-require 'functions.php';
 
-clearSession();
+require_once '../Auth.php';
+
+// Auth::logout();
 
 
 function pageController()
 {
-	if ($_SESSION['logged_in_user']){
+	if (Auth::check()){
 	    $msg1 = 'You have successfully logged out.';
 	    $msg2 = 'Have a nice day!';
-	    clearSession();
+	    Auth::logout();
 	} else{
 		header('Location: /login.php');
 		die;

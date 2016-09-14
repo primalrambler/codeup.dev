@@ -2,16 +2,17 @@
 
 session_start();
 
+require_once '../Auth.php';
 
 function pageController()
 {
 
-	if (! $_SESSION['logged_in_user']){
+	if (! Auth::check()){
 		header('Location: /login.php');
 		die;
 	} 
 	return [
-	'username' => $_SESSION['username'],
+	'username' => Auth::user(),
 	];
 }
 

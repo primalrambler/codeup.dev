@@ -2,40 +2,36 @@
 
 session_start();
 
-require_once 'functions.php';
+require_once '../Auth.php';
+require_once '../Log.php';
+require_once '../Input.php';
 
 
 function pageController()
 {
-    $validUser = 'guest';
-    $validPassword = 'password';
     $class = 'hidden';
 
-    $username = inputGet('username');
-    $password = inputGet('password');
+    $username = Input::get('username');
+    $password = Input::get('password');
 
 
     if (!empty($_SESSION)){
-        if ($_SESSION['logged_in_user']){
+        if (Auth::check()){
             header ('Location: /authorized.php');
             die;
         }
     }
 
     if (! empty($_POST)) {
-        if ($username === $validUser && $password === $validPassword) {
-            $_SESSION['logged_in_user'] = true;
-            $_SESSION['username'] = $username;
+        if (Auth::attempt($username,$password)){
             header ('Location: /authorized.php');
             die;
-        } 
-        elseif (! empty($_POST) && ($username !== $validUser || $password !== $validPassword)) {
+        } else {
             $class = 'show';
+        // elseif (! empty($_POST) && ($username !== $validUser || $password !== $validPassword)) {
         }
     }
     return [
-    'username' => $username,
-    'password' => $password,
     'class' => $class,
     ];
 }
