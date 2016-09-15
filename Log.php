@@ -6,13 +6,14 @@ class Log
 	public $datestamp;
 	public $timestamp;
 	public $handle;
+	public $logDirectory = __DIR__ .'/logs/';
 
 	public function __construct ($prefix = 'log')
 	{
 		$this->datestamp = date('Y-m-d');
 		$this->timestamp = date('H:i:s');
 		$this->filename = "$prefix-{$this->datestamp}.log";
-		$this->handle = fopen($this->filename, 'a');
+		$this->handle = fopen($this->$logDirectory.$this->filename, 'a');
 	}
 
 	public function logMessage($level, $message)
