@@ -6,7 +6,7 @@ class Log
 	public $datestamp;
 	public $timestamp;
 	public $handle;
-	public $logDirectory = __DIR__ .'/logs/';
+	// public $logDirectory = __DIR__ .'/logs/';
 
 	public function __construct ($prefix = 'log')
 	{
