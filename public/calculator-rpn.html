@@ -14,51 +14,73 @@
         a second far right column will be used for highlighting
         which row is being edited (future feature) -->
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-xs-6 col-xs-offset-3">
                 <div class="input-area input-large" id="line3"></div>
                 <div class="input-area hilite" id="hilite3"></div>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-xs-6 col-xs-offset-3">
                 <div class="input-area input-large" id="line2"></div>
                 <div class="input-area hilite" id="hilite2"></div>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-xs-6 col-xs-offset-3">
                 <div class="input-area input-large" id="line1"></div>
                 <div class="input-area hilite" id="highlight1"></div>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-8">
+            <div class="col-xs-6 col-xs-offset-3">
                 <div class="input-area input-large" id="line0"></div>
                 <div class="input-area hilite" id="highlite0"></div>
             </div>
         </div>
         <div class="row">
-            <div class="col-md-8">
-                <button class="btn butn single" id="clear" href="#">
-                        <span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span>
+            <div class="col-xs-6 col-xs-offset-3">
+                <button class="btn butn single modifier shift" href="#" id="tangent">tan</button>
+                <button class="btn butn single modifier" href="#" id="sine">sin</button>
+                <button class="btn butn single modifier" href="#" id="cosine">cos</button>
+                <button class="btn butn single number" value="PI">π</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6 col-xs-offset-3">
+                <button class="btn butn single modifier" href="#" id="binary">BIN</button>
+                <button class="btn butn single modifier" href="#" id="hexidecimal">HEX</button>
+                <button class="btn butn single modifier" href="#" id="factorial">x!</button>
+                <button class="btn butn single modifier" href="#" id="inverse">1/x</button>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-xs-6 col-xs-offset-3">
+                <button class="btn butn single operand shift" href="#" value="squared">
+                    <span>x<sup>2</sup></span>
                 </button>
-                <button class="btn butn single" id="clear" href="#">
-                        <span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span>
+                <button class="btn butn single operand shift" href="#" value="power">
+                    <span>y<sup>x</sup></span>
                 </button>
-                <button class="btn butn single" id="clear" href="#">
-                        <span class="glyphicon glyphicon-triangle-left" aria-hidden="true"></span>
+                <button class="btn butn single operand shift" href="#" value="root">
+                    <span><sup>y</sup>&#x0221A;<span style="text-decoration: overline">x</span></span>
                 </button>
-                <button class="btn butn single modifier" href="#" id="clearall">AC</button>
+                <button class="btn butn single operand shift" href="#" value="squareroot">
+                    <span><sup>2</sup>&#x0221A;<span style="text-decoration: overline">x</span></span>
+                </button>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-xs-6 col-xs-offset-3">
+                <button class="btn butn single modifier orange" href="#" id="clearall">AC</button>
                 <button class="btn butn single modifier" href="#" id="plusmn">&plusmn;</button>
                 <button class="btn butn single modifier" href="#" id="percentage">%</button>
                 <button class="btn butn single operand" href="#" value="divide">&divide;</button>
             </div>
         </div>
+
         <div class="row">
-            <div class="col-md-8">
-                <button class="btn butn single modifier shift" href="#" id="tangent">tan</button>
-                <button class="btn butn single modifier shift" href="#" id="natlog">ln</button>
-                <button class="btn butn single modifier shift" href="#" value="log">log<sub>10</sub></button>
+            <div class="col-xs-6 col-xs-offset-3">
                 <button class="btn butn single number" href="#" value="7">7</button>
                 <button class="btn butn single number" href="#" value="8">8</button>
                 <button class="btn butn single number" href="#" value="9">9</button>
@@ -66,10 +88,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-8">
-                <button class="btn butn single modifier shift" href="#" id="cosine">cos</button>
-                <button class="btn butn single modifier" href="#" id="factorial">x!</button>
-                <button class="btn butn single modifier" href="#" id="inverse">1/x</button>
+            <div class="col-xs-6 col-xs-offset-3">
                 <button class="btn butn single number" href="#" value="4">4</button>
                 <button class="btn butn single number" href="#" value="5">5</button>
                 <button class="btn butn single number" href="#" value="6">6</button>
@@ -77,16 +96,7 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-8">
-                <button class="btn butn single modifier" href="#" id="sin">sin</button>
-                <button class="btn butn single operand shift" href="#" value="power">
-                    <span>y<sup>x</sup></span>
-                    <!-- <span class="shift-text-small">x<sup>2</sup></span> -->
-                </button>
-                <button class="btn butn single operand shift" href="#" value="root">
-                    <span><sup>y</sup>&#x0221A;<span style="text-decoration: overline">x</span></span>
-                    <!-- <span class="shift-text-small">&#x0221A;<span style="text-decoration: overline">x</span></span> -->
-                </button>
+            <div class="col-xs-6 col-xs-offset-3">
                 <button class="btn butn single number" href="#" value="1">1</button>
                 <button class="btn butn single number" href="#" value="2">2</button>
                 <button class="btn butn single number" href="#" value="3">3</button>
@@ -95,14 +105,10 @@
             </div>
         </div>
         <div class="row">
-            <div class="col-md-8">
-                <button class="btn butn single number" value="PI">π</button>
-                <button class="btn butn single blue number" id="shift"></button>
-                <button class="btn butn single orange number" id="shift"></button>
+            <div class="col-xs-6 col-xs-offset-3">
                 <button class="btn butn single number" value="0">0</button>
                 <button class="btn butn single number" id="decimal" value=".">.</button>
                 <button class="btn butn double blue" id="enter">ENTER</button>
-
             </div>
         </div>
     </div>
