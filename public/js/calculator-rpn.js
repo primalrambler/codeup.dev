@@ -40,6 +40,8 @@ percentageButton.addEventListener("click", percentage);
 var inverseButton = document.getElementById("inverse");
 inverseButton.addEventListener("click", inverse);
 
+var factorialButton = document.getElementById("factorial");
+factorialButton.addEventListener("click", factorial);
 
 
 
@@ -52,12 +54,10 @@ function numberDisplay (e){
 		flagEnter = 0; // clear the switch so it jumps to normal user input
 		flagOperand = 0; 
 		numberArray.unshift(this.innerHTML);
-		console.log ('array after enter/operand '+numberArray);
 
 	//for all situations that enter or an operand has not been pressed
 	} else if (flagDecimal == 0 || this.value != ".") { //prevent double decimal entry
 		(numberArray.length == 0)? numberArray[0] = this.value : numberArray[0] += this.value;
-		console.log(numberArray + " number array at input time")
 	}
 
 	if (this.value == ".") {
@@ -136,16 +136,13 @@ function inverse (e) {
 }
 
 
-function factorialMath(n) {
-  if (n === 0) {
-    return 1;
-  }
-  return n * factorial(n - 1);
-}
-
 function factorial (e){
 	var n = parseFloat(numberArray[0]);
-	numberArray[0] = factorialMath(n);
+    var rval=1;
+    for (var i = 2; i <= n; i++){
+        rval = rval * i;
+	}	
+	numberArray[0] = rval;
 	displayUpdate();
 }
 	
