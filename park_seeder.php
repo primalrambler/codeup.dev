@@ -1,7 +1,7 @@
 <?php
 //connect to database
 require_once ('db_connect_park.php');
-require_once ('db_connect.php');
+
 
 //include external parks data
 require_once ('parks_array.php');
