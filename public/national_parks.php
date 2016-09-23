@@ -1,24 +1,17 @@
 <?php
-
 require_once (__DIR__.'/../db_connect_park.php');
 require_once (__DIR__.'/../Input.php');
-
 $limit = 4;
 $offset = (intval(Input::get('page')) -1) * $limit;
-
 function getPageCount ($dbc,$limit) {
 	$stmt = $dbc->query('SELECT * FROM national_parks');
 	$number_of_parks = $stmt->rowCount();
 	$number_of_pages = ceil($number_of_parks/$limit);
 	return $number_of_pages;
 }
-
 $number_of_pages = getPageCount($dbc,$limit);
-
 // $offset = 5;
-
 $stmt = $dbc->query('SELECT * FROM national_parks LIMIT '.$limit.' OFFSET '.$offset.'');
-
 $parks = $stmt->fetchAll(PDO::FETCH_NUM);
     
 function getTableRowData ($parks) {
@@ -40,6 +33,7 @@ function getTableRowData ($parks) {
 
 
 $insertParks = getTableRowData($parks);
+$number_of_pages = getPageCount($dbc,$limit);
 
 ?>
 
