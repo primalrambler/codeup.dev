@@ -1,18 +1,21 @@
 <?php
 
 require_once (__DIR__.'/../db_connect_park.php');
+require_once (__DIR__.'/../Input.php');
 
 $limit = 4;
+$offset = (intval(Input::get('page')) -1) * $limit;
 
-
-function getpageCount ($dbc,$limit) {
+function getPageCount ($dbc,$limit) {
 	$stmt = $dbc->query('SELECT * FROM national_parks');
 	$number_of_parks = $stmt->rowCount();
 	$number_of_pages = ceil($number_of_parks/$limit);
 	return $number_of_pages;
 }
 
-$offset = 5;
+$number_of_pages = getPageCount($dbc,$limit);
+
+// $offset = 5;
 
 $stmt = $dbc->query('SELECT * FROM national_parks LIMIT '.$limit.' OFFSET '.$offset.'');
 
@@ -22,13 +25,18 @@ function getTableRowData ($parks) {
 	$tableRowHtml = '';
 	foreach ($parks as $park) {
 		$tableRowHtml .='<tr>';  //start the row
-		for ($i=1; $i <count($park) ; $i++) { 
+		for ($i=1; $i < count($park) ; $i++) { 
 			$tableRowHtml .= '<td>'.$park[$i].'</td>';
 		}
 		$tableRowHtml .='</tr>';  //close the row
 	}
 	return $tableRowHtml;
 }
+
+
+//page controller needs to return...
+//table html
+//number of pages to generate
 
 
 $insertParks = getTableRowData($parks);
@@ -66,11 +74,9 @@ $insertParks = getTableRowData($parks);
 		        <span aria-hidden="true">&laquo;</span>
 		      </a>
 		    </li>
-		    <li><a href="#">1</a></li>
-		    <li><a href="#">2</a></li>
-		    <li><a href="#">3</a></li>
-		    <li><a href="#">4</a></li>
-		    <li><a href="#">5</a></li>
+		    <?php for ($i=1; $i <= $number_of_pages; $i++): ?>
+		    	<li><a href="national_parks.php?page=<?= $i; ?>"><?= $i; ?></a></li>
+			<?php endfor; ?>
 		    <li>
 		      <a href="#" aria-label="Next">
 		        <span aria-hidden="true">&raquo;</span>
@@ -78,8 +84,6 @@ $insertParks = getTableRowData($parks);
 		    </li>
 		  </ul>
 		</nav>
-
-
 	</div>
 
 <?php include_once('footer.php'); ?>
