@@ -1,9 +1,37 @@
 <?php
-require_once('db_connect_parks');
+
+require_once (__DIR__.'/../db_connect_park.php');
+
+$limit = 4;
 
 
+function getpageCount ($dbc,$limit) {
+	$stmt = $dbc->query('SELECT * FROM national_parks');
+	$number_of_parks = $stmt->rowCount();
+	$number_of_pages = ceil($number_of_parks/$limit);
+	return $number_of_pages;
+}
+
+$offset = 5;
+
+$stmt = $dbc->query('SELECT * FROM national_parks LIMIT '.$limit.' OFFSET '.$offset.'');
+
+$parks = $stmt->fetchAll(PDO::FETCH_NUM);
+    
+function getTableRowData ($parks) {
+	$tableRowHtml = '';
+	foreach ($parks as $park) {
+		$tableRowHtml .='<tr>';  //start the row
+		for ($i=1; $i <count($park) ; $i++) { 
+			$tableRowHtml .= '<td>'.$park[$i].'</td>';
+		}
+		$tableRowHtml .='</tr>';  //close the row
+	}
+	return $tableRowHtml;
+}
 
 
+$insertParks = getTableRowData($parks);
 
 ?>
 
@@ -27,7 +55,7 @@ require_once('db_connect_parks');
 					<th>Year Established</th>
 					<th>Size (ac)</th>
 			</thead>
-			<tbody id="insertParks"></tbody>
+			<tbody id="insertParks"><?= $insertParks ?></tbody>
 		</table>
 
 
