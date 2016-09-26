@@ -34,17 +34,11 @@ if ($page < 1) {
 	$page = $number_of_pages;
 }
 
-
-
-
 $offset = ($limit * $page) - $limit;
 $stmt = $dbc->query('SELECT * FROM national_parks LIMIT '.$limit.' OFFSET '.$offset.'');
 $parks = $stmt->fetchAll(PDO::FETCH_NUM);
 $insertParks = createTable($parks);
     
-
-
-
 ?>
 
 <!DOCTYPE html>
@@ -66,6 +60,7 @@ $insertParks = createTable($parks);
 					<th>Location</th>
 					<th>Year Established</th>
 					<th>Size (ac)</th>
+					<th>Description</th>
 			</thead>
 			<tbody id="insertParks"><?= $insertParks ?></tbody>
 		</table>
