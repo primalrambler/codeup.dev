@@ -2,9 +2,68 @@
 require_once (__DIR__.'/../db_connect_park.php');
 require_once (__DIR__.'/../Input.php');
 
+
+// -------------- FORM ----------------------//
+
+
+$park = $_POST;
+$classWarning = 'hide';
+var_dump($_POST);
+var_dump($park);
+
+
+function truncateText($text,$length){
+		return (strlen($text) > $length) ?	substr($text, 0,$length) : $text;
+}
+
+function isValidDate($date){
+	return strtotime($date) !== false;
+}
+
+function formatDateForMySql($date){
+	return date_create($date)->format('Y-m-d');
+}
+
+function isValidSize($area){
+	return is_numeric($area);
+}
+
+function isValidParkData($park){
+	return (isValidDate($park['date_established']) && isValidSize($park['area_in_acres']) && ! empty($park['name']) && !empty($park['location']));
+}
+
+
+function inputParkData($park){
+
+	if (isValidParkData($park)){
+
+		$park['name'] = truncateText($park['name'],255);
+		$park['location'] = truncateText($park['location'],255);
+		$park['description'] = truncateText($park['description'],2000);
+		$stmt = $dbc->prepare('INSERT INTO  national_parks (name,location,date_established,area_in_acres,description) VALUES (:name, :location, :date_established, :area_in_acres, :description)');
+
+		$stmt->bindValue(':name', $park['name'], PDO::PARAM_STR);
+		$stmt->bindValue(':location', $park['location'], PDO::PARAM_STR);
+		$stmt->bindValue(':date_established', $park['date_established'], PDO::PARAM_STR);
+		$stmt->bindValue(':area_in_acres', $park['area_in_acres'], PDO::PARAM_STR);
+		$stmt->bindValue(':description', $park['description'], PDO::PARAM_STR);
+
+		$stmt->execute();
+		return true;
+	}
+
+	return false;
+
+}
+
+// (inputParkData($park) && !empty($_POST)) ? $classWarning = 'hide' : $classWarning = 'show';
+
+
+//---------------- END FORM ----------------------------//
+
+//---------------- PAGE CONTROLLER --------------------//
+
 define("LIMIT", 4);
-
-
 function getPageCount ($dbc) {
 	$stmt = $dbc->query('SELECT * FROM national_parks');
 	$number_of_parks = $stmt->rowCount();
@@ -38,7 +97,7 @@ function pageController ($dbc){
 	}
 
 	$offset = (LIMIT * $page) - LIMIT;
-	$stmt = $dbc->query('SELECT * FROM national_parks LIMIT '.LIMIT.' OFFSET '.$offset.'');
+	$stmt = $dbc->query('SELECT * FROM national_parks ORDER BY name LIMIT '.LIMIT.' OFFSET '.$offset.'');
 	$parks = $stmt->fetchAll(PDO::FETCH_NUM);
 	$parksTable = createTable($parks);
 
@@ -61,6 +120,10 @@ extract(pageController($dbc));
 	<title>Parks</title>
 <head>
 <body>
+	<div class="alert alert-danger alert-dismissible <?= $classWarning ?>" role="alert">
+    	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <strong>Warning!</strong> There is something wrong with the information you provided.
+    </div>
 	<div class="page-header">
 	  <h1 style='padding-left: 70px;'>NATIONAL PARKS <small>our common treasure</small></h1>
 	</div>
@@ -116,8 +179,8 @@ extract(pageController($dbc));
 			    <input type="text" class="form-control" id="date_established" name="date_established"placeholder="Date Established (YYYY-MM-DD)">
 		    </div>
 		    <div class="form-group">
-			    <label for="size_in_acres">Size</label>
-			    <input type="text" class="form-control" id="size_in_acres" name="size_in_acres"placeholder="Size in acres">
+			    <label for="area_in_acres">Size</label>
+			    <input type="text" class="form-control" id="area_in_acres" name="area_in_acres"placeholder="Size in acres">
 		    </div>
 		    <div class="form-group">
 			    <label for="description">Description</label>
