@@ -1,17 +1,27 @@
 <?php
 
-require_once ('db_connect_parks');
-
-$stmt = $dbc->query("SELECT * FROM national_parks;");
-
-
-function getparks($stmt)
+class SomethingCool
 {
-	$rows = $stmt->fetchAll(PDO::FETCH_ASSOC);
-	foreach ($rows as $row){
-		echo $row['name'];
-		echo "<br>";
+	protected $attributes = [
+		'email'=> 'joe@example.com'
+
+	];
+
+	public function __get($name)
+	{
+		if (isset($this->attributes['name'])){
+			return $this->attributes['name'];
+		}
+		return null;
 	}
+
+	public function __set($name,$value)
+	{
+		var_dump($name, $value);
+	}
+
+
+
 }
 
-getParks($stmt);
+var_dump($cool_object->email);
