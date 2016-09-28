@@ -14,12 +14,12 @@ class Rectangle
 //----------- Setters
 	protected function setHeight($height)
 	{
-		$this->height = $height;
+		$this->height = floatval($height);
 	}
 
 	protected function setWidth($width)
 	{
-		$this->width = $width;
+		$this->width = floatval($width);
 	}
 
 //----------- Getters
