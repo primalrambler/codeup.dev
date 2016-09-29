@@ -53,6 +53,7 @@ function addPark($dbc)
 
 		$stmt = $dbc->prepare($query);
 
+		try {
 		$stmt->bindValue(':name', Input::getString('name'), PDO::PARAM_STR);
 		$stmt->bindValue(':location', Input::getString('location'), PDO::PARAM_STR);
 		$stmt->bindValue(':date_established', Input::getString('date_established'), PDO::PARAM_STR);
@@ -60,7 +61,10 @@ function addPark($dbc)
 		$stmt->bindValue(':description', Input::getString('description'), PDO::PARAM_STR);
 
 		$stmt->execute();
+			
+		} catch (Exception $e){
+			$e[] = $e->getMessage();
+			return $e;
+		}
 	}
-
-
 }

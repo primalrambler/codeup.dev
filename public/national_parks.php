@@ -1,7 +1,7 @@
 <?php
 
 require_once (__DIR__ . '/../php/controllers/parks_controller.php');
-    
+
 ?>
 
 <!DOCTYPE html>
@@ -32,6 +32,7 @@ require_once (__DIR__ . '/../php/controllers/parks_controller.php');
 					<td><?= $park['location']; ?></td>
 					<td><?= $park['date_established']; ?></td>
 					<td><?= $park['area_in_acres']; ?></td>
+					<td><?= $park['description']; ?></td>
 				</tr>
 				<?php endforeach; ?>
 			</tbody>

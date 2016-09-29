@@ -1,5 +1,5 @@
 <?php
-
+require_once __DIR__ . '/../helpers/Session.php';
 require_once __DIR__ . '/../db/config/parks_config.php';
 require_once __DIR__ . '/../db/db_connect.php';
 require_once __DIR__ . '/../helpers/Input.php';
@@ -18,7 +18,8 @@ function pageController($dbc)
 	$data = [
 		'parks' => $parks,
 		'page' => $page_number,
-		'max_page' => $max_page_number
+		'max_page' => $max_page_number,
+		'errors' => 
 	];
 
 	return $data;

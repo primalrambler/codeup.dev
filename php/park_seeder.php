@@ -1,10 +1,11 @@
 <?php
 //connect to database
-require_once ('db_connect_park.php');
+require_once (__DIR__.'/db/config/parks_config.php');
+require_once (__DIR__.'/db/db_connect.php');
 
 
 //include external parks data
-require_once ('parks_array.php');
+require_once (__DIR__.'/parks_array.php');
 
 $stmt = $dbc->prepare('INSERT INTO  national_parks (name,location,date_established,area_in_acres,description) VALUES (:name, :location, :date_established, :area_in_acres, :description)');
 
