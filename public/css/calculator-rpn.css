@@ -6,6 +6,7 @@ body {
     height: 50px;
     padding: 5px;
     margin: 10px;
+    background: #F2C14E;
     text-align: center;
     font-size: 2em;
     color: white;
@@ -19,8 +20,8 @@ body {
 
 .double{
     width:150px;
-    margin-right: 20px;
-    margin-left: 20px;
+    /*margin-right: 20px;*/
+    margin-left: 30px;
 }
 
 .shift-text {
@@ -41,18 +42,34 @@ body {
     right:1px;
 }
 
-.input-area {
-    /*vertical-align: text-bottom;*/
-    float: left;
+.display-row {
+    margin: auto;
+    position: relative;
     height: 40px;
-    cursor: pointer;
-    padding-top: 5px;
+    width: 400px;
     font-size: 2em;
     color:#454545;
     text-align: right;
     text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
-    background: #D9DCD6;
-    border: 0;
+    /*background: #D9DCD6;*/
+    background-color: #5FAD56;
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.25);
+    font-size: 2em;
+}
+
+
+.button-row {
+    margin: auto;
+    position: relative;
+    height: 80px;
+    width: 400px;
+    padding: 5px;
+    text-align: center;
+    font-size: 1em;
+    color: white;
+    background-color: #0D3B66;
+    /*position:relative;*/
+    /*border: 1px solid black;*/
 }
 
 
@@ -68,25 +85,27 @@ body {
 }
 
 .orange {
-    background: #FAA916;
+    /*background: #FAA916;*/
+    background: #F95738;
     border: 0;
     cursor: pointer;
 }
 
 .orange:hover {
     outline: none;
-    background-color: #E4572E;
+    /*background-color: #E4572E;*/
+
 }
 
 .blue {
-    background: #457B9D;
+    background: #1982C4;
     border: 0;
     cursor: pointer;
 }
 
 .blue:hover {
     outline:none;
-    background-color: #16425B
+    /*background-color: #16425B*/
 }
 
 
@@ -97,9 +116,4 @@ body {
 .input-small {
     width: 10px;
     background-color: #334E58;
-}
-
-.hilite {
-    width: 10px;
-    background-color: #D2D4C8;
 }
