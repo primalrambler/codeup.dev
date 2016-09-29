@@ -1,5 +1,5 @@
 <?php
-require_once (__DIR__.'/../db_connect_park.php');
+require_once (__DIR__.'/../parks_config.php');
 require_once (__DIR__.'/../Input.php');
 
 
