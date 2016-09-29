@@ -6,10 +6,10 @@ require_once (__DIR__.'/../Input.php');
 // -------------- FORM ----------------------//
 
 
-$park = $_POST;
+$newPark = $_POST;
 $classWarning = 'hide';
 var_dump($_POST);
-var_dump($park);
+var_dump($newPark);
 
 
 function truncateText($text,$length){
@@ -24,42 +24,38 @@ function formatDateForMySql($date){
 	return date_create($date)->format('Y-m-d');
 }
 
-function isValidSize($area){
-	return is_numeric($area);
-}
+// function isValidSize($area){
+// 	return is_numeric($area);
+// }
 
-function isValidParkData($park){
-	return (isValidDate($park['date_established']) && isValidSize($park['area_in_acres']) && ! empty($park['name']) && !empty($park['location']));
-}
+// function isValidParkData($newPark){
+// 	return (isValidDate($newPark['date_established']) && isValidSize($newPark['area_in_acres']) && ! empty($newPark['name']) && !empty($newPark['location']));
+// }
 
 
-function inputParkData($park){
+function inputParkData($newPark,$dbc){
 
-	if (isValidParkData($park)){
-
-		$park['name'] = truncateText($park['name'],255);
-		$park['location'] = truncateText($park['location'],255);
-		$park['description'] = truncateText($park['description'],2000);
+		$newPark['name'] = truncateText(Input::getString('name'),255);
+		$newPark['location'] = truncateText(Input::getString('location'),255);
+		$newPark['description'] = truncateText(Input::getString('description'),2000);
+		$newPark['area_in_acres'] = Input::getNumber('area_in_acres');
 		$stmt = $dbc->prepare('INSERT INTO  national_parks (name,location,date_established,area_in_acres,description) VALUES (:name, :location, :date_established, :area_in_acres, :description)');
 
-		$stmt->bindValue(':name', $park['name'], PDO::PARAM_STR);
-		$stmt->bindValue(':location', $park['location'], PDO::PARAM_STR);
-		$stmt->bindValue(':date_established', $park['date_established'], PDO::PARAM_STR);
-		$stmt->bindValue(':area_in_acres', $park['area_in_acres'], PDO::PARAM_STR);
-		$stmt->bindValue(':description', $park['description'], PDO::PARAM_STR);
+		$stmt->bindValue(':name', $newPark['name'], PDO::PARAM_STR);
+		$stmt->bindValue(':location', $newPark['location'], PDO::PARAM_STR);
+		$stmt->bindValue(':date_established', $newPark['date_established'], PDO::PARAM_STR);
+		$stmt->bindValue(':area_in_acres', $newPark['area_in_acres'], PDO::PARAM_STR);
+		$stmt->bindValue(':description', $newPark['description'], PDO::PARAM_STR);
 
 		$stmt->execute();
-		return true;
-	}
-
-	return false;
 
 }
 
-// (inputParkData($park) && !empty($_POST)) ? $classWarning = 'hide' : $classWarning = 'show';
+(Input::has('name')) ? inputParkData($newPark,$dbc): null;
 
 
 //---------------- END FORM ----------------------------//
+
 
 //---------------- PAGE CONTROLLER --------------------//
 
