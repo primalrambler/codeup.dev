@@ -36,25 +36,28 @@ class Input
         return is_numeric(trim(static::get($key)));
     }
 
-    public static function getString($key)
+
+    public static function getString($key, $default = null)
     {
-        if (! self::has($key){
-            throw new Exception("$key does not exist")
-        } elseif (is_string(self::get($key)) && !self::checkNumeric($key)){
-            return self::get($key);
+        if (!self::has($key) && $default === null) {
+            throw new Exception("$key does not exist");
+        } else if (is_string(self::get($key, $default)) && !is_numeric(self::get($key, $default))) {
+            return self::get($key, $default);
         } else {
-            throw new Exception($key . 'value must be a string!');
+            throw new Exception($key . ' must be a string');
         }
     }
-
-    public static function getNumber($key)
+    
+    public static function getNumber($key, $default = null)
     {
-        if (! self::has($key) && ! self::checkNumeric($key)){
-            throw new Exception($key . 'value must be a number!');
+        if (!self::has($key) && $default === null) {
+            throw new Exception("$key does not exist");
+        } else if (is_numeric(self::get($key, $default))) {
+            return floatval(self::get($key, $default));
+        } else {
+            throw new Exception($key . ' must be a number');
         }
-        return floatval(self::get($key));
     }
-
 
 
 

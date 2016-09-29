@@ -1,113 +1,16 @@
 <?php
-require_once (__DIR__.'/../parks_config.php');
-require_once (__DIR__.'/../Input.php');
 
-
-// -------------- FORM ----------------------//
-
-
-$newPark = $_POST;
-$classWarning = 'hide';
-var_dump($_POST);
-var_dump($newPark);
-
-
-
-
-function isValidDate($date){
-	return strtotime($date) !== false;
-}
-
-function formatDateForMySql($date){
-	return date_create($date)->format('Y-m-d');
-}
-
-
-
-function addPark($dbc){
-
-	if(Input::has('name') && Input::has('location') && Input::has('date_established') && Input::has('area_in_acres') && Input::has('description'))
-	{
-		$query = 'INSERT INTO national_parks (name, location, date_established, area_in_acres, description) VALUES (:name, :location, :date_established, :area_in_acres, :description)';
-		$stmt = $dbc->prepare($query);
-		$stmt->bindValue(':name', Input::getString('name'), PDO::PARAM_STR);
-		$stmt->bindValue(':location', Input::getString('location'), PDO::PARAM_STR);
-		$stmt->bindValue(':date_established', Input::getString('date_established'), PDO::PARAM_STR);
-		$stmt->bindValue(':area_in_acres', Input::getNumber('area_in_acres'), PDO::PARAM_STR);
-		$stmt->bindValue(':description', Input::getString('description'), PDO::PARAM_STR);
-		$stmt->execute();
-	}
-}
-
-(Input::has('name')) ? addPark($dbc): null;
-
-
-//---------------- END FORM ----------------------------//
-
-
-//---------------- PAGE CONTROLLER --------------------//
-
-define("LIMIT", 4);
-function getPageCount ($dbc) {
-	$stmt = $dbc->query('SELECT * FROM national_parks');
-	$number_of_parks = $stmt->rowCount();
-	$number_of_pages = ceil($number_of_parks/LIMIT);
-	return $number_of_pages;
-}
-
-function createTable ($parks) {
-	$tableRowHtml = '';
-	foreach ($parks as $park) {
-		$tableRowHtml .='<tr>';  //start the row
-		for ($i=1; $i < count($park) ; $i++) { 
-			$tableRowHtml .= '<td>'.$park[$i].'</td>';
-		}
-		$tableRowHtml .='</tr>';  //close the row
-	}
-	return $tableRowHtml;
-}
-
-function pageController ($dbc){
-
-	$data = [];
-	$number_of_pages = getPageCount($dbc);
-
-	//set page number and pass to view for page control
-	$page = (Input::has('page')) ? intval(Input::get('page')) : 1;
-	if ($page < 1) {
-		$page = 1;
-	} else if ($page > $number_of_pages) {
-		$page = $number_of_pages;
-	}
-
-	$offset = (LIMIT * $page) - LIMIT;
-	$stmt = $dbc->query('SELECT * FROM national_parks ORDER BY name LIMIT '.LIMIT.' OFFSET '.$offset.'');
-	$parks = $stmt->fetchAll(PDO::FETCH_NUM);
-	$parksTable = createTable($parks);
-
-	$data['number_of_pages'] = $number_of_pages;
-	$data['page'] = $page;
-	$data['parksTable'] = $parksTable;
-
-	return $data;
-
-}
-
-extract(pageController($dbc));
+require_once (__DIR__ . '/../php/controllers/parks_controller.php');
     
 ?>
 
 <!DOCTYPE html>
 <html>
 <head>
-	<?php include_once('header.php'); ?>
+	<?php include_once(__DIR__.'/../php/helpers/header.php'); ?>
 	<title>Parks</title>
 <head>
 <body>
-	<div class="alert alert-danger alert-dismissible <?= $classWarning ?>" role="alert">
-    	<button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <strong>Warning!</strong> There is something wrong with the information you provided.
-    </div>
 	<div class="page-header">
 	  <h1 style='padding-left: 70px;'>NATIONAL PARKS <small>our common treasure</small></h1>
 	</div>
@@ -122,7 +25,16 @@ extract(pageController($dbc));
 					<th>Size (ac)</th>
 					<th>Description</th>
 			</thead>
-			<tbody id="parksTable"><?= $parksTable ?></tbody>
+			<tbody>
+				<?php foreach($parks as $park): ?>
+				<tr>
+					<td><?= $park['name']; ?></td>
+					<td><?= $park['location']; ?></td>
+					<td><?= $park['date_established']; ?></td>
+					<td><?= $park['area_in_acres']; ?></td>
+				</tr>
+				<?php endforeach; ?>
+			</tbody>
 		</table>
 
 		<nav aria-label="Page navigation">
@@ -132,7 +44,7 @@ extract(pageController($dbc));
 		        <span aria-hidden="true">&laquo;</span>
 		      </a>
 		    </li>
-		    <?php for ($i=1; $i <= $number_of_pages; $i++): ?>
+		    <?php for ($i=1; $i <= $max_page; $i++): ?>
 		    	<li><a href="national_parks.php?page=<?= $i; ?>"><?= $i; ?></a></li>
 			<?php endfor; ?>
 		    <li>
@@ -175,6 +87,6 @@ extract(pageController($dbc));
 	</div>
 
 
-<?php include_once('footer.php'); ?>
+<?php include_once(__DIR__.'/../php/helpers/footer.php'); ?>
 <body>
 </html>

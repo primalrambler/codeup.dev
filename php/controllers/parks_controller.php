@@ -3,7 +3,7 @@
 require_once __DIR__ . '/../db/config/parks_config.php';
 require_once __DIR__ . '/../db/db_connect.php';
 require_once __DIR__ . '/../helpers/Input.php';
-require_once __DIR__ . '/../helpers/helper_functions.php';
+require_once __DIR__ . '/../helpers/park_functions.php';
 
 function pageController($dbc)
 {
