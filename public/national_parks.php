@@ -12,9 +12,7 @@ var_dump($_POST);
 var_dump($newPark);
 
 
-function truncateText($text,$length){
-		return (strlen($text) > $length) ?	substr($text, 0,$length) : $text;
-}
+
 
 function isValidDate($date){
 	return strtotime($date) !== false;
@@ -24,34 +22,24 @@ function formatDateForMySql($date){
 	return date_create($date)->format('Y-m-d');
 }
 
-// function isValidSize($area){
-// 	return is_numeric($area);
-// }
-
-// function isValidParkData($newPark){
-// 	return (isValidDate($newPark['date_established']) && isValidSize($newPark['area_in_acres']) && ! empty($newPark['name']) && !empty($newPark['location']));
-// }
 
 
-function inputParkData($newPark,$dbc){
+function addPark($dbc){
 
-		$newPark['name'] = truncateText(Input::getString('name'),255);
-		$newPark['location'] = truncateText(Input::getString('location'),255);
-		$newPark['description'] = truncateText(Input::getString('description'),2000);
-		$newPark['area_in_acres'] = Input::getNumber('area_in_acres');
-		$stmt = $dbc->prepare('INSERT INTO  national_parks (name,location,date_established,area_in_acres,description) VALUES (:name, :location, :date_established, :area_in_acres, :description)');
-
-		$stmt->bindValue(':name', $newPark['name'], PDO::PARAM_STR);
-		$stmt->bindValue(':location', $newPark['location'], PDO::PARAM_STR);
-		$stmt->bindValue(':date_established', $newPark['date_established'], PDO::PARAM_STR);
-		$stmt->bindValue(':area_in_acres', $newPark['area_in_acres'], PDO::PARAM_STR);
-		$stmt->bindValue(':description', $newPark['description'], PDO::PARAM_STR);
-
+	if(Input::has('name') && Input::has('location') && Input::has('date_established') && Input::has('area_in_acres') && Input::has('description'))
+	{
+		$query = 'INSERT INTO national_parks (name, location, date_established, area_in_acres, description) VALUES (:name, :location, :date_established, :area_in_acres, :description)';
+		$stmt = $dbc->prepare($query);
+		$stmt->bindValue(':name', Input::getString('name'), PDO::PARAM_STR);
+		$stmt->bindValue(':location', Input::getString('location'), PDO::PARAM_STR);
+		$stmt->bindValue(':date_established', Input::getString('date_established'), PDO::PARAM_STR);
+		$stmt->bindValue(':area_in_acres', Input::getNumber('area_in_acres'), PDO::PARAM_STR);
+		$stmt->bindValue(':description', Input::getString('description'), PDO::PARAM_STR);
 		$stmt->execute();
-
+	}
 }
 
-(Input::has('name')) ? inputParkData($newPark,$dbc): null;
+(Input::has('name')) ? addPark($dbc): null;
 
 
 //---------------- END FORM ----------------------------//
