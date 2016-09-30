@@ -48,25 +48,28 @@ function getParks($dbc, $page_number, $limit)
 function addPark($dbc){
 	$errors = [];
 	$name;
-	$loction;
+	$location;
 	$date;
 	$area;
 	$description;
 
 	//check for empty fields
-	try{
-		foreach ($_POST as $key => $value) {
-			if (empty($_POST[$key])) {
-				throw new Exception($_POST[$key]." Field is empty");
-			} 
+	if (empty($_POST['name']) || empty($_POST['location']) || empty($_POST['date_established']) || empty($_POST['area_in_acres']) || empty($_POST['description']))
+	{
+		try{
+			foreach ($_POST as $key => $value) {
+				if (empty($_POST[$key])) {
+					throw new Exception("$key Field is empty");
+				} 
+			}
+
+		} catch (Exception $e) {
+			$errors[] = $e->getMessage();
 		}
 
-	} catch (Exception $e) {
-		$errors[] = $e->getMessage();
-	}
-
+	} elseif(Input::has('name') && Input::has('location') && Input::has('date_established') && Input::has('area_in_acres') && Input::has('description'))
+	
 	//if everthing is filled in validate every entry
-	if(Input::has('name') && Input::has('location') && Input::has('date_established') && Input::has('area_in_acres') && Input::has('description'))
 	{
 		try {
 			$name = Input::getString('name');
@@ -107,9 +110,11 @@ function addPark($dbc){
 			$stmt->bindValue(':description', $description, PDO::PARAM_STR);
 
 			$stmt->execute();
+			header('Location: /national_parks.php');
+			die();
 		}
 
-	} //end if
+	} 
 
 	return $errors;
 

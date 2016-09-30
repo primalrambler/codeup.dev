@@ -8,11 +8,6 @@ require_once __DIR__ . '/../helpers/park_functions.php';
 function pageController($dbc)
 {
 	
-	//validate
-	$errors = addPark($dbc);
-
-
-
 	$limit = 4;
 
 
@@ -21,13 +16,17 @@ function pageController($dbc)
 	$parks = getParks($dbc, $page_number, $limit);
 	//create submitted variable to check if form has been submitted
 	$submitted = isset($_GET['submitted']) ? true : false;
+	$errors = addPark($dbc);
 
 	$data = [
 		'parks' => $parks,
 		'page' => $page_number,
 		'max_page' => $max_page_number,
 		'submitted' => $submitted,
+		'errors' => $errors,
 	];
+
+	var_dump($_POST);
 
 	return $data;
 }
