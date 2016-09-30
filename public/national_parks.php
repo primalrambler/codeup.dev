@@ -57,12 +57,27 @@ require_once (__DIR__ . '/../php/controllers/parks_controller.php');
 		</nav>
 	</div>
 
-
 	<div class="page-header">
 	  <h1 style='padding-left: 70px;'><small>Add a Park</small></h1>
 	</div>
 	<div class="container">
-		<form method="POST" action="/national_parks.php">
+<!-- 
+		add if submitted and !empty($errors) then display errors
+		loop through error array and echo $error."<br>"
+ -->
+
+		<!-- Warning Messages -->
+		<?php if ($submitted && !empty($errors)) : ?>
+			<div>
+				<?php foreach ($errors as $error => $message) : ?>
+					<div class="alert alert-warning" role="alert"><?=$message?></div><br>
+				<?php endforeach;?>
+			</div>
+		<?php endif;?>
+
+
+
+		<form method="POST" action="/national_parks.php?page=<?= $page ?>&submitted = true">
 			<div class="form-group">
 				<label for="name">Park Name</label>
 				<input type="text" class="form-control" id="name" name="name" placeholder="Park Name">
@@ -86,6 +101,7 @@ require_once (__DIR__ . '/../php/controllers/parks_controller.php');
 		    <button type="submit" class="btn btn-default">Submit</button>
 		</form>
 	</div>
+	<div style="padding:50px"></div>
 
 
 <?php include_once(__DIR__.'/../php/helpers/footer.php'); ?>

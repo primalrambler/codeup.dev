@@ -45,26 +45,73 @@ function getParks($dbc, $page_number, $limit)
 
 
 
-function addPark($dbc)
-{
+function addPark($dbc){
+	$errors = [];
+	$name;
+	$loction;
+	$date;
+	$area;
+	$description;
+
+	//check for empty fields
+	try{
+		foreach ($_POST as $key => $value) {
+			if (empty($_POST[$key])) {
+				throw new Exception($_POST[$key]." Field is empty");
+			} 
+		}
+
+	} catch (Exception $e) {
+		$errors[] = $e->getMessage();
+	}
+
+	//if everthing is filled in validate every entry
 	if(Input::has('name') && Input::has('location') && Input::has('date_established') && Input::has('area_in_acres') && Input::has('description'))
 	{
-		$query = 'INSERT INTO national_parks (name, location, date_established, area_in_acres, description) VALUES (:name, :location, :date_established, :area_in_acres, :description)';
-
-		$stmt = $dbc->prepare($query);
-
 		try {
-		$stmt->bindValue(':name', Input::getString('name'), PDO::PARAM_STR);
-		$stmt->bindValue(':location', Input::getString('location'), PDO::PARAM_STR);
-		$stmt->bindValue(':date_established', Input::getString('date_established'), PDO::PARAM_STR);
-		$stmt->bindValue(':area_in_acres', Input::getNumber('area_in_acres'), PDO::PARAM_STR);
-		$stmt->bindValue(':description', Input::getString('description'), PDO::PARAM_STR);
-
-		$stmt->execute();
-			
-		} catch (Exception $e){
-			$e[] = $e->getMessage();
-			return $e;
+			$name = Input::getString('name');
+		}catch (Exception $e) {
+			$errors[] = $e->getMessage();
 		}
-	}
-}
+		try {
+			$location = Input::getString('location');
+		}catch (Exception $e) {
+			$errors[] = $e->getMessage();
+		}
+		try {
+			$date= Input::getString('date_established');
+		}catch (Exception $e) {
+			$errors[] = $e->getMessage();
+		}
+		try {
+			$area = Input::getNumber('area_in_acres');
+		}catch (Exception $e) {
+			$errors[] = $e->getMessage();
+		}
+		try {
+			$description = Input::getString('description');
+		}catch (Exception $e) {
+			$errors[] = $e->getMessage();
+		}
+		
+		if (empty($errors)) {
+
+			$query = 'INSERT INTO national_parks (name, location, date_established, area_in_acres, description) VALUES (:name, :location, :date_established, :area_in_acres, :description)';
+
+			$stmt = $dbc->prepare($query);
+
+			$stmt->bindValue(':name', $name, PDO::PARAM_STR);
+			$stmt->bindValue(':location', $location, PDO::PARAM_STR);
+			$stmt->bindValue(':date_established', $date, PDO::PARAM_STR);
+			$stmt->bindValue(':area_in_acres', $area, PDO::PARAM_STR);
+			$stmt->bindValue(':description', $description, PDO::PARAM_STR);
+
+			$stmt->execute();
+		}
+
+	} //end if
+
+	return $errors;
+
+} 
+

@@ -1,6 +1,6 @@
 <?php
 
-$errors = [];
+$e = [];
 
 try {
 	throw new Exception ('$key needs to be a string');
