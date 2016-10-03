@@ -18,8 +18,6 @@ abstract class Model
     public function __construct(array $attributes = array())
     {
         self::dbConnect();
-
-        // @TODO: Initialize the $attributes property with the passed value
         $this->attributes = $attributes;
     }
 
@@ -31,9 +29,8 @@ abstract class Model
     protected static function dbConnect()
     {
         if (!self::$dbc) {
-// @TODO: Connect to database
-            $dbc = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASS);
-            $dbc->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+            self::$dbc = new PDO('mysql:host='.DB_HOST.';dbname='.DB_NAME, DB_USER, DB_PASS);
+            self::$dbc->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
         }
     }
 
@@ -45,10 +42,9 @@ abstract class Model
      * @return mixed|null value from the attributes array or null if it is undefined
      */
     public function __get($name)
-// @TODO: Return the value from attributes for $name if it exists, else return null
     {
-        if(array_key_exists($name, self::$attributes)){
-            return $this->$attributes[$name];
+        if(array_key_exists($name, $this->attributes)){
+            return $this->attributes[$name];
         }
         return null;
     }
@@ -60,24 +56,22 @@ abstract class Model
      * @param mixed  $value value to be saved in attributes array
      */
     public function __set($name, $value)
-// @TODO: Store name/value pair in attributes array
     {
-        $this->$attributes[$name] = $value;
+        $this->attributes[$name] = $value;
     }
+
 
     /** Store the object in the database */
     public function save()
     {
-// @TODO: Ensure there are values in the attributes array before attempting to save
-        if (!empty(self::$attributes)){
-            if (!empty(self::attributes['id'])){
+        if (!empty($this->attributes)){
+
+            if (array_key_exists('id', $this->attributes)){
                 $this->update();
             } else {
                 $this->insert();
             }
         }
-
-// @TODO: Call the proper database method: if the `id` is set this is an update, else it is a insert
     }
 
     /**
@@ -99,6 +93,6 @@ abstract class Model
      *
      * NOTE: Because this method is abstract, any child class MUST have it defined.
      */
-    protected abstract function delete();
+    // protected abstract function delete();
 
 }
