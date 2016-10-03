@@ -28,6 +28,11 @@ class User extends Model
         $stmt->execute();
 
 
+        //AS A LOOP
+        // foreach ($this->attributes as $column => $value) {
+        //     $stmt->bindValue(':'.$column,$value, PDO::PARAM_STR);
+        }
+
         $this->attributes['id'] = self::$dbc->lastInsertId();
     }
 
@@ -36,7 +41,9 @@ class User extends Model
     {
 // @TODO: Use prepared statements to ensure data security
 
-        $stmt = self::$dbc->prepare('UPDATE users SET first_name = :first_name, last_name = :last_name, username = :username, password = :password, email = :email WHERE id = :id');
+        $query = 'UPDATE users SET first_name = :first_name, last_name = :last_name, username = :username, password = :password, email = :email WHERE id = :id';
+
+        $stmt = self::$dbc->prepare($query);
 
 // @TODO: You will need to iterate through all the attributes to build the prepared query
 
@@ -67,7 +74,9 @@ class User extends Model
         self::dbConnect();
 
 // @TODO: Create select statement using prepared statements
-        $stmt = self::$dbc->prepare("SELECT * FROM users WHERE id = $id");
+        $query = 'SELECT * FROM users WHERE id = :id';
+        $stmt = self::$dbc->prepare($query);
+        $stmt->bindValue(':id',$id, PDO::PARAM_INT);
         $stmt->execute();
 
 // @TODO: Store the result in a variable named $result
@@ -76,7 +85,7 @@ class User extends Model
         // // The following code will set the attributes on the calling object based on the result variable's contents
         $instance = null;
         if ($result) {
-            $instance = new static($result);
+            $instance = new static($result);  //it's like saying...new User($result)
         }
         return $instance;
 
@@ -91,9 +100,28 @@ class User extends Model
     {
         self::dbConnect();
 
-        // @TODO: Learning from the find method, return all the matching records
-        $stmt = self::$dbc->prepare("SELECT * FROM users");
+        $query = 'SELECT * FROM users';
+        $stmt = self::$dbc->exec($query);
 
-        return $stmt->fetchall(PDO::FETCH_CLASS. 'User');
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
     }
+        $instance = null;
+        if ($results) {
+            $instance = new static($results);  //it's like saying...new User($result)
+        }
+        return $instance;
+
+    public function delete()
+    {
+        $query = 'DELETE FROM users WHERE id = :id';
+        $stmt = self::dbc->prepare($query);
+
+        $stmt->bindValue(':id', $this->attributes['id', PDO::PARAM_INT]);
+        $stmt->execute();
+    }
+
+
+
+
+
 }
