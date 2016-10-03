@@ -1,5 +1,11 @@
 <?php
 
+class InvalidArgumentException extends Exception { }
+class OutOfRangeException extends InvalidArgumentException { }
+class DomainException extends InvalidArgumentException { }
+class LengthException extends InvalidArgumentException { }
+class RangeException extends InvalidArgumentException { }
+
 class Input
 {
     /**
@@ -37,26 +43,61 @@ class Input
     }
 
 
-    public static function getString($key, $default = null)
+    public static function getString($key, $min, $max, $default = null)
     {
-        if (!self::has($key) && $default === null) {
-            throw new Exception("$key does not exist");
-        } else if (is_string(self::get($key, $default)) && !is_numeric(self::get($key, $default))) {
-            return self::get($key, $default);
-        } else {
-            throw new Exception($key . ' must be a string');
+        // check parameters are the correct type 
+        if (!is_string($key) || !is_numeric($min) || !is_numeric($max)){
+            throw new InvalidArgumentException ("Invalid Argument");
         }
+
+        //check for missing key, min and max
+        if (!self::has($key) && $default === null) {
+            throw new OutOfRangeException("$key does not exist");
+        } 
+        if (!self::has($min) || !self::has($max)) {
+            throw new OutOfRangeException("min/max range value is missing");
+        } 
+
+        //check values for the correct type
+        if (!is_string(self::get($key, $default))){
+            throw new DomainException("Value must be a string");
+        } 
+
+        // check for string length
+        if (strlen(self::get($key, $default)) < $min || strlen(self::get($key, $default)) > $max ){
+            throw new LengthException("String does not meet length requirements")
+        } 
+
+        return self::get($key, $default);
+       
     }
     
-    public static function getNumber($key, $default = null)
+    public static function getNumber($key, $min, $max, $default = null)
     {
-        if (!self::has($key) && $default === null) {
-            throw new Exception("$key does not exist");
-        } else if (is_numeric(self::get($key, $default))) {
-            return floatval(self::get($key, $default));
-        } else {
-            throw new Exception($key . ' must be a number');
+        // check parameters are the correct type 
+        if (!is_string($key) || !is_numeric($min) || !is_numeric($max)){
+            throw new InvalidArgumentException ("Invalid Argument");
         }
+
+        //check for missing key, min and max
+        if (!self::has($key) && $default === null) {
+            throw new OutOfRangeException("$key does not exist");
+        } 
+        if (!self::has($min) || !self::has($max)) {
+            throw new OutOfRangeException("min/max range value is missing");
+        } 
+
+        //check values for the correct type
+        if (!is_numeric(self::get($key, $default))){
+            throw new DomainException("Value must be a number");
+        } 
+
+        // check number is in range
+        if (self::get($key, $default) < $min || self::get($key, $default) > $max ){
+            throw new LengthException("Value must be bound by $min and $max");
+        } 
+
+        return floatval(self::get($key, $default));
     }
 
 
