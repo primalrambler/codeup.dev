@@ -9,12 +9,35 @@ class User extends Model
     /** Insert a new entry into the database */
     protected function insert()
     {
-        // @TODO: Use prepared statements to ensure data security
 
-        // @TODO: You will need to iterate through all the attributes to build the prepared query
+        foreach ($this->attributes as $key => $value) {
+            $this->attributes[$key] = trim(htmlspecialchars(strip_tags($_REQUEST[$key])));
+        }
+
+// @TODO: Use prepared statements to ensure data security
+
+        $stmt = $dbc->prepare('INSERT INTO  user (first_name, last_name, username, password, email) VALUES (:first_name, :last_name, :username, :password, :email)');
+            
+// @TODO: You will need to iterate through all the attributes to build the prepared query
+        $stmt->bindValue(':first_name', $this->attributes['first_name'], PDO::PARAM_STR);
+        $stmt->bindValue(':last_name', $this->attributes['last_name'], PDO::PARAM_STR);
+        $stmt->bindValue(':username', $this->attributes['username'], PDO::PARAM_STR);
+        $stmt->bindValue(':password', $this->attributes['password'], PDO::PARAM_STR);
+        $stmt->bindValue(':email', $this->attributes['email'], PDO::PARAM_STR);
+
+        $stmt->execute();
 
         // @TODO: After the insert, add the id back to the attributes array
         //        so the object properly represents a DB record
+
+        $this->attributes = array('ID'=> PDO::lastInsertId()) + $this->attributes;
+    }   
+
+
+
+
+
+
     }
 
     /** Update existing entry in the database */
