@@ -11,14 +11,14 @@ class User extends Model
     {
 // @TODO: Use prepared statements to ensure data security
 
-        $stmt = $dbc->prepare('INSERT INTO  user (first_name, last_name, username, password, email) VALUES (:first_name, :last_name, :username, :password, :email)');
+        $query = 'INSERT INTO  users (first_name, last_name, username, password, email) VALUES (:first_name, :last_name, :username, :password, :email)';
+        $stmt = self::$dbc->prepare($query);
 
 
         foreach ($this->attributes as $key => $value) {
-            $this->attributes[$key] = trim(htmlspecialchars(strip_tags($_REQUEST[$key])));
+            $this->attributes[$key] = trim(htmlspecialchars(strip_tags($this->attributes[$key])));
         }
 
-// @TODO: You will need to iterate through all the attributes to build the prepared query
         $stmt->bindValue(':first_name', $this->attributes['first_name'], PDO::PARAM_STR);
         $stmt->bindValue(':last_name', $this->attributes['last_name'], PDO::PARAM_STR);
         $stmt->bindValue(':username', $this->attributes['username'], PDO::PARAM_STR);
@@ -27,11 +27,8 @@ class User extends Model
 
         $stmt->execute();
 
-        // @TODO: After the insert, add the id back to the attributes array
-        //        so the object properly represents a DB record
 
-        $this->attributes = array('id'=> PDO::lastInsertId()) + $this->attributes;
-    }   
+        $this->attributes['id'] = self::$dbc->lastInsertId();
     }
 
     /** Update existing entry in the database */
@@ -39,14 +36,15 @@ class User extends Model
     {
 // @TODO: Use prepared statements to ensure data security
 
-        $stmt = $dbc->prepare('UPDATE user SET first_name = :first_name, last_name = :last_name, username = :username, password = :password, email = :email WHERE id = :id');
+        $stmt = self::$dbc->prepare('UPDATE users SET first_name = :first_name, last_name = :last_name, username = :username, password = :password, email = :email WHERE id = :id');
 
 // @TODO: You will need to iterate through all the attributes to build the prepared query
 
         foreach ($this->attributes as $key => $value) {
-            $this->attributes[$key] = trim(htmlspecialchars(strip_tags($_REQUEST[$key])));
+            $this->attributes[$key] = trim(htmlspecialchars(strip_tags($this->attributes[$key])));
         }
 //do I need to bind ID?
+        $stmt->bindValue(':id', $this->attributes['id'], PDO::PARAM_INT);
         $stmt->bindValue(':first_name', $this->attributes['first_name'], PDO::PARAM_STR);
         $stmt->bindValue(':last_name', $this->attributes['last_name'], PDO::PARAM_STR);
         $stmt->bindValue(':username', $this->attributes['username'], PDO::PARAM_STR);
@@ -54,7 +52,6 @@ class User extends Model
         $stmt->bindValue(':email', $this->attributes['email'], PDO::PARAM_STR);
 
         $stmt->execute();
-
     }
 
     /**
@@ -69,16 +66,20 @@ class User extends Model
         // Get connection to the database
         self::dbConnect();
 
-        // @TODO: Create select statement using prepared statements
+// @TODO: Create select statement using prepared statements
+        $stmt = self::$dbc->prepare("SELECT * FROM users WHERE id = $id");
+        $stmt->execute();
 
-        // @TODO: Store the result in a variable named $result
-
-        // The following code will set the attributes on the calling object based on the result variable's contents
+// @TODO: Store the result in a variable named $result
+        
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        // // The following code will set the attributes on the calling object based on the result variable's contents
         $instance = null;
         if ($result) {
             $instance = new static($result);
         }
         return $instance;
+
     }
 
     /**
@@ -91,5 +92,8 @@ class User extends Model
         self::dbConnect();
 
         // @TODO: Learning from the find method, return all the matching records
+        $stmt = self::$dbc->prepare("SELECT * FROM users");
+
+        return $stmt->fetchall(PDO::FETCH_CLASS. 'User');
     }
 }
